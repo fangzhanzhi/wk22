@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="HFRVv27OMPuW1HcYH4AQGM">
+<head data-page-node-id="DQkvSDcN872rOzooIK5s64">
+<meta charset="UTF-8" data-page-node-id="paFHITHL9iDAyTz604vk3F">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="E4MNuQfnBg0bKQpXVgWpOK">
+<title>课程作业-2 | 小鹏汇天「陆地航母」全方位安全分析</title>
+<style>
+:root{
+  --bg:#0a0f1a; --bg2:#0e1524; --panel:#121c2e; --panel2:#16223a;
+  --line:#243449; --line2:#2f4560;
+  --txt:#e6edf6; --sub:#9fb0c6; --mut:#6f829b;
+  --cyan:#38bdf8; --cyan-d:#0ea5e9; --violet:#a78bfa;
+  --green:#34d399; --orange:#fb923c; --red:#f87171; --yellow:#fbbf24;
+  --grad:linear-gradient(120deg,#38bdf8 0%,#818cf8 50%,#a78bfa 100%);
+  --shadow:0 16px 44px rgba(0,0,0,.45);
+  --max:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--txt);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.75;font-size:15px;overflow-x:hidden}
+a{color:var(--cyan);text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:100;box-shadow:0 0 10px var(--cyan)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;height:62px;background:rgba(10,15,26,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:90;display:flex;align-items:center}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo{font-weight:800;font-size:15px;letter-spacing:.5px;display:flex;align-items:center;gap:9px}
+.logo .mk{width:26px;height:26px;border-radius:7px;background:var(--grad);display:grid;place-items:center;color:#06121f;font-size:14px;font-weight:900}
+.navlinks{display:flex;gap:2px;flex-wrap:wrap}
+.navlinks a{color:var(--sub);font-size:12.5px;padding:7px 10px;border-radius:7px;transition:.2s;white-space:nowrap}
+.navlinks a:hover,.navlinks a.active{color:#fff;background:rgba(56,189,248,.14)}
+.menu-btn{display:none;background:none;border:0;color:var(--txt);font-size:22px;cursor:pointer}
+
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-top:62px;padding-bottom:40px;overflow:hidden;
+  background:radial-gradient(1100px 600px at 78% 18%,rgba(56,189,248,.16),transparent 60%),radial-gradient(900px 500px at 12% 82%,rgba(167,139,250,.13),transparent 60%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line2);border-radius:100px;font-size:12px;color:var(--cyan);background:rgba(56,189,248,.07);margin-bottom:22px}
+.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+h1{font-size:clamp(30px,4vw,50px);line-height:1.18;font-weight:850;letter-spacing:-.5px}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{color:var(--sub);font-size:16px;margin:20px 0 12px;max-width:620px}
+.hero .meta{color:var(--mut);font-size:13px;margin-bottom:28px}
+.hero .meta b{color:var(--orange);font-weight:700}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;transition:.25s;border:1px solid transparent}
+.btn.p{background:var(--grad);color:#06121f;box-shadow:0 8px 24px rgba(56,189,248,.28)}
+.btn.p:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(56,189,248,.4)}
+.btn.s{border-color:var(--line2);color:var(--txt);background:rgba(255,255,255,.03)}
+.btn.s:hover{border-color:var(--cyan);color:var(--cyan)}
+.hero-art{position:relative;display:grid;place-items:center}
+.hero-art svg{width:100%;max-width:460px;filter:drop-shadow(0 18px 40px rgba(0,0,0,.5))}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center;transition:.25s}
+.kpi:hover{border-color:var(--cyan);transform:translateY(-3px)}
+.kpi .n{font-size:27px;font-weight:850;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
+.kpi .n.warn{background:linear-gradient(120deg,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi .t{font-size:12px;color:var(--sub);margin-top:6px}
+
+/* sections */
+section{padding:80px 0;position:relative}
+section.alt{background:linear-gradient(180deg,transparent,rgba(18,28,46,.45),transparent)}
+.sec-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--cyan);margin-bottom:10px;font-family:ui-monospace,monospace}
+h2{font-size:clamp(24px,3vw,34px);font-weight:820;letter-spacing:-.3px;margin-bottom:12px;line-height:1.3}
+h2 .num{color:var(--mut);font-size:.7em;font-weight:600;margin-right:10px}
+.sec-desc{color:var(--sub);max-width:820px;margin-bottom:34px;font-size:15px}
+h3{font-size:19px;font-weight:750;margin:0 0 12px}
+h4{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--txt)}
+p{color:var(--sub);margin-bottom:12px}
+
+/* cards */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;transition:.25s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--line2);transform:translateY(-3px);box-shadow:var(--shadow)}
+.card .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:20px;margin-bottom:15px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.25)}
+.card .ic.o{background:rgba(251,146,60,.12);border-color:rgba(251,146,60,.3)}
+.card .ic.r{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3)}
+.card .ic.g{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.3)}
+.card .ic.v{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3)}
+.card p{font-size:13.5px;margin:0}
+.card ul{margin:8px 0 0 0;padding-left:18px;color:var(--sub);font-size:13.5px}
+.card li{margin:5px 0}
+
+/* highlight box */
+.note{background:rgba(56,189,248,.07);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:14px 18px;margin:18px 0;font-size:13.5px;color:var(--sub)}
+.note.warn{background:rgba(251,146,60,.08);border-color:var(--orange)}
+.note b{color:var(--txt)}
+.src{font-size:11px;color:var(--mut);font-style:italic}
+
+/* 9-step flow */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;position:relative}
+.step .sn{position:absolute;top:12px;right:14px;font-size:11px;color:var(--mut);font-family:ui-monospace,monospace}
+.step h4{font-size:14px;color:var(--cyan);padding-right:28px}
+.step p{font-size:12px;margin:0}
+.step.lvl-v{border-top:3px solid var(--cyan)}
+.step.lvl-s{border-top:3px solid var(--violet)}
+.step.lvl-c{border-top:3px solid var(--green)}
+.lvl-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--sub)}
+.lvl-legend span{display:inline-flex;align-items:center;gap:6px}
+.lvl-legend i{width:12px;height:4px;border-radius:2px;display:inline-block}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:620px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:rgba(56,189,248,.08);color:var(--cyan);font-weight:700;font-size:12px;white-space:nowrap;position:sticky;top:0}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+tbody tr:last-child td{border-bottom:0}
+td b{color:var(--txt)}
+.pill{display:inline-block;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:700;white-space:nowrap}
+.pill.h{background:rgba(248,113,113,.15);color:#fca5a5;border:1px solid rgba(248,113,113,.3)}
+.pill.m{background:rgba(251,146,60,.15);color:#fdba74;border:1px solid rgba(251,146,60,.3)}
+.pill.l{background:rgba(52,211,153,.15);color:#6ee7b7;border:1px solid rgba(52,211,153,.3)}
+
+/* risk matrix */
+.matrix{display:grid;grid-template-columns:70px repeat(5,1fr);gap:5px;max-width:640px;margin:0 auto}
+.mx-cell{border-radius:8px;min-height:56px;display:grid;place-items:center;font-size:11px;text-align:center;padding:4px;border:1px solid rgba(255,255,255,.06);transition:.2s;cursor:default}
+.mx-cell:hover{transform:scale(1.08);z-index:2;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.mx-h{background:rgba(255,255,255,.04);color:var(--sub);font-weight:700;font-size:11px}
+.r1{background:rgba(52,211,153,.15);color:#a7f3d0}
+.r2{background:rgba(163,230,53,.14);color:#d9f99d}
+.r3{background:rgba(251,191,36,.16);color:#fde68a}
+.r4{background:rgba(251,146,60,.2);color:#fdba74}
+.r5{background:rgba(248,113,113,.24);color:#fecaca}
+.mx-dot{width:9px;height:9px;border-radius:50%;background:#fff;display:inline-block;margin:0 1px;box-shadow:0 0 6px currentColor}
+
+/* fta */
+.fta{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;overflow-x:auto}
+.fta svg{min-width:640px;width:100%;height:auto}
+.gate text,.ev text{font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--sub)}
+.legend span{display:flex;align-items:center;gap:7px}
+
+/* pillars radar */
+.pillars{display:grid;grid-template-columns:340px 1fr;gap:26px;align-items:center}
+.radar-box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;place-items:center}
+.radar-box svg{width:100%;max-width:330px;height:auto}
+.pillar-list{display:flex;flex-direction:column;gap:10px}
+.pillar-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;transition:.2s}
+.pillar-item:hover{border-color:var(--cyan)}
+.pillar-item .name{font-weight:750;font-size:14px;display:flex;align-items:center;gap:9px}
+.pillar-item .name i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.pillar-item .std{font-family:ui-monospace,monospace;font-size:11px;color:var(--mut)}
+.pillar-item .desc{grid-column:1/-1;font-size:12.5px;color:var(--sub)}
+
+/* redundancy arch */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.arch-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.arch-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.node{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.3);border-radius:9px;padding:8px 12px;font-size:12px;color:#bae6fd;font-weight:600}
+.node.bak{background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);color:#ddd6fe}
+.arrow{color:var(--mut);font-size:15px}
+.vote{font-family:ui-monospace,monospace;font-size:11px;color:var(--yellow);background:rgba(251,191,36,.1);padding:3px 8px;border-radius:6px}
+
+/* timeline */
+.tl{position:relative;padding-left:34px;margin-top:10px}
+.tl:before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet),var(--green))}
+.tl-item{position:relative;margin-bottom:22px}
+.tl-item:before{content:"";position:absolute;left:-28px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 0 4px rgba(56,189,248,.12)}
+.tl-item.done:before{background:var(--green);border-color:var(--green);box-shadow:0 0 0 4px rgba(52,211,153,.14)}
+.tl-item .yr{font-family:ui-monospace,monospace;font-size:12px;color:var(--cyan);font-weight:700}
+.tl-item h4{margin:2px 0 4px}
+.tl-item p{font-size:13px;margin:0}
+
+/* swot / conclusion */
+.concl-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.cc.pos{border-top:3px solid var(--green)}
+.cc.neg{border-top:3px solid var(--red)}
+.cc h4{display:flex;align-items:center;gap:8px}
+.cc ul{padding-left:18px;color:var(--sub);font-size:13px}
+.cc li{margin:6px 0}
+
+/* refs */
+.refs{columns:2;column-gap:32px;font-size:12.5px}
+.refs div{break-inside:avoid;margin-bottom:10px;padding-left:22px;position:relative;color:var(--sub)}
+.refs div:before{content:attr(data-n);position:absolute;left:0;color:var(--cyan);font-family:ui-monospace,monospace;font-weight:700}
+
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--mut);font-size:12.5px;text-align:center;background:var(--bg2)}
+footer b{color:var(--sub)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+
+@media(max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;gap:26px}
+  .hero-art{order:-1}.hero-art svg{max-width:320px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .g2,.g3,.g4,.steps,.arch,.concl-grid,.pillars{grid-template-columns:1fr}
+  .navlinks{display:none;position:absolute;top:62px;left:0;right:0;background:var(--bg2);flex-direction:column;padding:12px;border-bottom:1px solid var(--line)}
+  .navlinks.open{display:flex}
+  .menu-btn{display:block}
+  .refs{columns:1}
+  section{padding:60px 0}
+}
+@media(max-width:560px){.kpis{grid-template-columns:1fr 1fr}.matrix{min-width:460px}}
+</style>
+</head>
+<body data-page-node-id="wzfGchGoOp5szmTGgTncDk">
+<div id="progress" data-page-node-id="xuKFNIzItsbh2EJeqLKoYA"></div>
+
+<nav data-page-node-id="5FT2lP99FLFHqXpUkK7e2b">
+  <div class="wrap" data-page-node-id="D8S7bbk3EYs2jMyODCG7KF">
+    <div class="logo" data-page-node-id="NpYo3PpF6Zbx4SsCXbGfnT"><span class="mk" data-page-node-id="nrQE263D6AbE0xPAYd8tRE">S</span>飞行汽车 · 全方位安全分析</div>
+    <div class="navlinks" id="navlinks" data-page-node-id="b6qeGyRlbcCymLHF84vKkc">
+      <a href="#frame" data-page-node-id="MyEw5Tc6UwICQ654ZQTkTs">分析框架</a>
+      <a href="#scene" data-page-node-id="y3Gl3sR6yEYTpfRnDWW1wr">功能与场景</a>
+      <a href="#hazard" data-page-node-id="kqtqHyqlLCzG57dc4prmZj">危险源与风险</a>
+      <a href="#method" data-page-node-id="9Fya4OjUOD878DC7wsXkpR">分析方法</a>
+      <a href="#arch" data-page-node-id="LwgcJj8QFdXYrsTJBhOyPB">安全架构</a>
+      <a href="#pillars" data-page-node-id="RqucVni1vn23qO6uUDVCgq">五大支柱</a>
+      <a href="#design" data-page-node-id="cNyT8Gi3J2wqNpXHgGPnGt">专项设计</a>
+      <a href="#cert" data-page-node-id="NzF5Fgl3PIt4iAZ3BkQtTP">适航标准</a>
+      <a href="#verify" data-page-node-id="ZCDwR5atzjnM4H2mSnY2LL">验证与论证</a>
+      <a href="#conclusion" data-page-node-id="LOijak1TH869WEhfpvGZIT">结论</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" data-page-node-id="LXy46ClfQIZCb9tipCInFK">☰</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-page-node-id="46P0ue7uv5jZivFjMYpQaz">
+  <div class="wrap" data-page-node-id="cJpibJE5cdqliKmALoAn7B">
+    <div data-page-node-id="KOGMxStORpvppXOFQXvwsg">
+      <div class="tag" data-page-node-id="fw9uOrOGB8JMdkFhpXgcLi"><span class="dot" data-page-node-id="NW1nUp76iFlB0yaAGevLBs"></span>课程作业-2 · 系统安全工程应用</div>
+      <h1 data-page-node-id="wRPhpI0clflsVAVZKPY7iB">小鹏汇天「陆地航母」<br data-page-node-id="HSHCRrLVfmRDhBV8r532ct"><span class="g" data-page-node-id="BRIPvVjCDNS3yhqPazWsAC">全方位深度安全分析</span></h1>
+      <p class="lead" data-page-node-id="CcnQlN5n9abiyIWMOjZixz">以教材《系统安全工程》方法论为骨架，对分体式飞行汽车整机开展从<strong style="color:#fff" data-page-node-id="z2W05Y43NeRJxWuvzA4s15">功能场景 → 危险源辨识 → 风险评估 → 安全架构 → 专项设计 → 测试验证 → 运行论证</strong>的全生命周期安全性剖析。</p>
+      <p class="meta" data-page-node-id="4aCdVl9PV34b0k5j37Jfsx">课程：飞行汽车技术基础 · 自动驾驶安全联合实验室 · 吉林大学　|　对象：XPENG AEROHT 陆地航母　|　<b data-page-node-id="fawbpQ4LbGNxdvyifSzzOi">航空级失效概率目标 10⁻⁹ / 飞行小时</b></p>
+      <div class="btns" data-page-node-id="G4s1rfF8Y5NMt6ZB5Y57Cw">
+        <a class="btn p" href="#frame" data-page-node-id="a2wliCnMGTn9LH3RKQILf9">开始阅读分析 ↓</a>
+        <a class="btn s" href="#conclusion" data-page-node-id="SXvN4xaKfqKG3v8ZlnEiRs">直达结论</a>
+      </div>
+    </div>
+    <div class="hero-art" data-page-node-id="bUmGGW4ceUF9C5n8qkZFjk">
+      <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" data-page-node-id="SiXKGZXnfAZmHqwbZT3fEy">
+        <defs data-page-node-id="Rbd1e7BQWXSLpy4ZxPwxHV">
+          <linearGradient id="bodyG" x1="0" y1="0" x2="1" y2="1" data-page-node-id="0GBdaX90A6vmVLXBjeNj5B">
+            <stop offset="0" stop-color="#38bdf8" data-page-node-id="9M5sRQ24vXvv48OIERfVHo"/><stop offset="1" stop-color="#818cf8" data-page-node-id="0Ukiew8Qas5ApoMtpIdBOs"/>
+          </linearGradient>
+          <linearGradient id="groundG" x1="0" x2="1" data-page-node-id="utPA9Y4BPkYLAoWpbxyiKV">
+            <stop offset="0" stop-color="#a78bfa" data-page-node-id="GX8OlY9C2nCLvKQ88WvJir"/><stop offset="1" stop-color="#38bdf8" data-page-node-id="QsxS1AzFIK2E2r5Qx4AME7"/>
+          </linearGradient>
+          <radialGradient id="halo" data-page-node-id="MiwWAoO0JFgAFkL5Q1tKrx"><stop offset="0" stop-color="#38bdf8" stop-opacity=".35" data-page-node-id="102MSCL7QkhVXEJ3BwkZMA"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0" data-page-node-id="kil24NT0B3Jo6LgUqxccvC"/></radialGradient>
+        </defs>
+        <ellipse cx="230" cy="200" rx="180" ry="150" fill="url(#halo)" data-page-node-id="FKvoFGqpzlU5jktbB31PAO"/>
+        <!-- grid -->
+        <g stroke="#243449" stroke-width="1" opacity=".55" data-page-node-id="QprfargDuNQ2XOaZb8YPt0">
+          <path d="M20 300 H440 M20 270 H440 M20 240 H440" data-page-node-id="SFC7AfYlgOohU7VPaGXGNN"/>
+          <path d="M60 210 L20 330 M130 210 L110 330 M200 210 L200 330 M270 210 L290 330 M340 210 L380 330" data-page-node-id="2ZW2Zxk85mpVfiiW9GUVnt"/>
+        </g>
+        <!-- flight body: hexacopter -->
+        <g transform="translate(230,120)" data-page-node-id="gD215uQZecrirujw8r3kSI">
+          <g stroke="url(#bodyG)" stroke-width="3" fill="none" opacity=".9" data-page-node-id="n8iolLR5N6ocRV3mqWqqaO">
+            <path d="M-70 -8 L-38 -34 M70 -8 L38 -34 M-70 18 L-38 40 M70 18 L38 40 M0 -46 L0 -20" data-page-node-id="lvL1rNs95c1vfa4ZErBcBE"/>
+          </g>
+          <g fill="#0e1524" stroke="url(#bodyG)" stroke-width="2.5" data-page-node-id="sniCRTWzh3qC6lEQ1OvCnh">
+            <ellipse cx="-78" cy="-12" rx="20" ry="5" data-page-node-id="ClYHjzMLd2vqZFEogl1VFH"/><ellipse cx="78" cy="-12" rx="20" ry="5" data-page-node-id="JlEbBJoKR1W6hzygaHemHE"/>
+            <ellipse cx="-78" cy="22" rx="20" ry="5" data-page-node-id="u3FNxQidHvI2SwyImrpJ6X"/><ellipse cx="78" cy="22" rx="20" ry="5" data-page-node-id="Vr8XWhvccBjiIDKS7aJZoP"/>
+            <ellipse cx="0" cy="-50" rx="20" ry="5" data-page-node-id="EgtauSNYaaS6BBGUZBGDjP"/>
+          </g>
+          <g stroke="#38bdf8" stroke-width="2" opacity=".55" data-page-node-id="byKrZd0CrCMJgoyZc3RFFy">
+            <path d="M-98 -14 q-10 -4 -18 -12 M-58 -14 q10 -4 18 -12 M98 -14 q10 -4 18 -12 M58 -14 q-10 -4 -18 -12" data-page-node-id="wDOIs83GTUqgKE85bYpBJ0"/>
+          </g>
+          <rect x="-34" y="-30" width="68" height="56" rx="16" fill="url(#bodyG)" opacity=".92" data-page-node-id="mHB80rPgF19aicuIQJiD5s"/>
+          <rect x="-26" y="-24" width="52" height="30" rx="10" fill="#0a1220" opacity=".85" data-page-node-id="qEcs0jJGPQMSjVkZxq7nkE"/>
+          <text x="0" y="-6" fill="#7dd3fc" font-size="11" text-anchor="middle" font-family="monospace" data-page-node-id="NjtKpI9zX52448L76LgiS7">6× ROTOR / DUAL-DUCT</text>
+          <circle cx="0" cy="18" r="4" fill="#34d399" data-page-node-id="x15WC65fDfGA3aJqRIXfyJ"/>
+        </g>
+        <!-- separation arrows -->
+        <g stroke="#fb923c" stroke-width="1.6" stroke-dasharray="5 5" fill="none" data-page-node-id="GmRCcvPhBKhEuPLROwn4jf">
+          <path d="M150 205 L120 250 M310 205 L340 250" data-page-node-id="Xkbu7xYi0DGjRMyp8ScHnl"/>
+        </g>
+        <text x="230" y="215" fill="#fb923c" font-size="10" text-anchor="middle" font-family="monospace" data-page-node-id="GqaHlDHJJeHpjIenqiAIcP">分体 / 合体</text>
+        <!-- ground vehicle -->
+        <g transform="translate(230,285)" data-page-node-id="MC9mSXZPONdyIObHXHQn5S">
+          <rect x="-96" y="-18" width="192" height="34" rx="12" fill="url(#groundG)" opacity=".9" data-page-node-id="R5ckmGExnmaNB72ZI9jxRq"/>
+          <rect x="-70" y="-34" width="120" height="22" rx="8" fill="#16223a" stroke="#818cf8" stroke-width="1.5" data-page-node-id="PPeX5Ix2hvWsqULxAt2wMR"/>
+          <text x="-10" y="-19" fill="#c7d2fe" font-size="10" text-anchor="middle" font-family="monospace" data-page-node-id="1FGoGrRTKqdAfm6GYpYxq7">陆行体 · 增程 800V</text>
+          <g fill="#0a0f1a" stroke="#a78bfa" stroke-width="2" data-page-node-id="wtj0s5fPL1nKeTHjYnmxJw">
+            <circle cx="-58" cy="18" r="11" data-page-node-id="cTXbSs50hjcy5zg4rBBiQP"/><circle cx="0" cy="18" r="11" data-page-node-id="zYSR8fsWm4BA8vpLsY5VMR"/><circle cx="58" cy="18" r="11" data-page-node-id="xEPXEpY5mndnRKKgoWZNRM"/>
+          </g>
+        </g>
+        <!-- safety shield -->
+        <g transform="translate(372,86)" opacity=".95" data-page-node-id="XAhF3GTBR954yjTLmA9g5g">
+          <path d="M0 -26 L20 -18 V4 Q20 20 0 30 Q-20 20 -20 4 V-18 Z" fill="rgba(52,211,153,.14)" stroke="#34d399" stroke-width="2" data-page-node-id="08q7GFQlQHMqPC8QZmZ0LE"/>
+          <text x="0" y="6" fill="#6ee7b7" font-size="15" text-anchor="middle" data-page-node-id="MiQbOrZz3NfK5QEgF4RwzG">✓</text>
+        </g>
+        <text x="230" y="360" fill="#6f829b" font-size="10" text-anchor="middle" font-family="monospace" data-page-node-id="fSTcPwbwiDlpM8z9s3mMgh">SYSTEMS SAFETY · 10⁻⁹ TARGET</text>
+      </svg>
+    </div>
+  </div>
+  <div class="wrap" data-page-node-id="9THNUe0hJAaXFgHSd3f0S4">
+    <div class="kpis" data-page-node-id="ZhMEi1VBIImkgeGGzhf94S">
+      <div class="kpi rv" data-page-node-id="mCWjT8kC8MgRz0Ujt255tW"><div class="n" data-page-node-id="gnQC8KtpCPZBpOGmAlHiKf">10⁻⁹</div><div class="t" data-page-node-id="V5S9Qb6q7XEeY1cEXSjjtC">载人灾难级失效概率目标 / 飞行小时</div></div>
+      <div class="kpi rv" data-page-node-id="cpSmSuPVUX6Q87YgpHTH9p"><div class="n" data-page-node-id="Ggf4xOpoQZcRg5u7gvRBMo">3 重</div><div class="t" data-page-node-id="mgyybN4Yr1SnJEkkKRvmQn">飞控 / 能源 / 通信冗余体系</div></div>
+      <div class="kpi rv" data-page-node-id="GQPV3G2GppL5QTckLagcKl"><div class="n" data-page-node-id="RzDfVmsnk7h0MgSlnW9agT">50 m</div><div class="t" data-page-node-id="rKwK5PkVBxHz03iTCMtXCI">整机弹道降落伞最低开伞高度</div></div>
+      <div class="kpi rv" data-page-node-id="JDqo9yVTJF5J4JraEEcFGv"><div class="n warn" data-page-node-id="hyEd8QVEjncooa7jy2dDvP">9 步</div><div class="t" data-page-node-id="TuP1mHhUaskiKrQdAKdbjo">教材安全系统工程基本过程</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1 分析框架 ============ -->
+<section id="frame" class="alt" data-page-node-id="7zDQzSK2RUl7QlpC8aTBh1">
+  <div class="wrap" data-page-node-id="i4gb7Cin9T8E4kHryCCvUX">
+    <div class="rv" data-page-node-id="uPmvACIdBTOvkOVsZQDVWm"><div class="sec-tag" data-page-node-id="DZM0b4ciVkraDfe9NH3rr6">01 / FRAMEWORK</div><h2 data-page-node-id="gK9eIa4R5zUGYdtEAY7TBA"><span class="num" data-page-node-id="RJBPzHwZgPDFTSQbZa4KAs">01</span>分析框架：安全系统工程方法论</h2>
+    <p class="sec-desc" data-page-node-id="xVHNphuntDlEVyIUj5Ce4C">本作业严格对标教材提出的「智能运载工具安全系统工程」框架。飞行汽车作为典型的<strong style="color:#fff" data-page-node-id="WHCDykFwIWdSjLIiYQAvmF">安全关键复杂系统（Safety-critical Complex System）</strong>，其安全不能仅靠单一技术，而需以系统工程为底座，贯穿「分析—设计—验证—论证」闭环。下图 9 步过程即本次分析的目录结构。</p></div>
+
+    <div class="note rv" data-page-node-id="SgBMVUSa7Tdsy6EMVVLAOj"><b data-page-node-id="G3tEMGgRJ6usUdBMmbOhZ2">方法论锚点：</b>系统工程（ISO/IEC/IEEE 15288、INCOSE SEH）→ 安全分析（HARA、FHA、STPA、FMEA、FTA、CCA、TARA）→ 安全需求（Passive / FuSa / SOTIF / Behavior / Security）→ 安全措施（开发、实现、V&V）→ 安全论证（GSN、SACM）。<span class="src" data-page-node-id="UOoQmDO3tkMdBv3RL6cyfH">（教材第四章 p41、第五章 p77）</span></div>
+
+    <div class="steps rv" data-page-node-id="kuQdRHWtk4tRuzwDMyZHNt">
+      <div class="step lvl-v" data-page-node-id="jWmqNhstPBk6nhL3MfyFrr"><span class="sn" data-page-node-id="BxFG8KxenkMQQbE1wZAv2T">00</span><h4 data-page-node-id="U5YIxbhcnXDxALCcCIRLM1">安全文化与安全管理</h4><p data-page-node-id="Nogv9KmAcOV4ITC6reDY1W">组织级承诺；汇天「高管先飞 5000 公里」制度即为安全文化的实践体现。</p></div>
+      <div class="step lvl-v" data-page-node-id="AzCi7nXxDhaciknUiwkN4d"><span class="sn" data-page-node-id="Ibu311Cxv5cmDMHZgUBlte">01</span><h4 data-page-node-id="sXb75ykzkfxjFx7bHSmXDQ">整机功能与场景定义</h4><p data-page-node-id="y7IULzF9jaKchU8jDdY2rx">基于运行设计条件 ODC 划分陆行 / 分合 / 飞行 / 应急场景，定义整机功能。</p></div>
+      <div class="step lvl-v" data-page-node-id="Gxi4dvWEkLvY3BDMgx5CAW"><span class="sn" data-page-node-id="TkmC35ejyes5AeuZB3RD1A">02</span><h4 data-page-node-id="o0DlVFQs50vHbQFZ7VnBCC">安全分析方法</h4><p data-page-node-id="Jxk7b1rSbJCCNoCiPtb9Ue">HARA、FHA、STPA 整机级；FMEA、FTA、CCA 系统级；FMEDA、CAE 组件级。</p></div>
+      <div class="step lvl-s" data-page-node-id="oQTRZ1wsot2E2aNaJhL8be"><span class="sn" data-page-node-id="uByQbVUFPUdDBzxSj7IVqF">03</span><h4 data-page-node-id="ZbpMRFWshbhasGVRTgtJ35">系统安全架构设计</h4><p data-page-node-id="bDqt0CPA445vFO5Hh4JYVx">1oo2 / 2oo3 / 1oo2D 等冗余架构；飞控、能源、通信三重冗余。</p></div>
+      <div class="step lvl-s" data-page-node-id="HQo45iHbLcHOZuwT0bHI1H"><span class="sn" data-page-node-id="TGtZUkPUQbJI0wPZkSjhWE">04</span><h4 data-page-node-id="kG184VxHbr0O7hLpzqrS94">硬件安全设计</h4><p data-page-node-id="UynCUhavOC9OehtQUPuF0J">绝缘防护、短路/供电保护、高压互锁、故障检测与容错。</p></div>
+      <div class="step lvl-s" data-page-node-id="vCiIqWHsEUwTDJvpBDSRB1"><span class="sn" data-page-node-id="qcMJFuy42MuOHDA5PAqDUc">05</span><h4 data-page-node-id="vz4gOm5qK7xTbXJjMfojKL">软件安全设计</h4><p data-page-node-id="lJdpu1V3TXEcpnPJ5WfN2I">飞控软件 DO-178C 研制保证、多样性设计、失效-安全状态机。</p></div>
+      <div class="step lvl-c" data-page-node-id="qnZtzEkDaWUYX5AD1VTzRy"><span class="sn" data-page-node-id="7HZrVrzpGefXMjztqxqogD">06</span><h4 data-page-node-id="CPhyoA5Hkhqx5MKu5RQLgE">电气 / 机械 / 化学安全</h4><p data-page-node-id="fRYncaT65GAly0Ho5GYQZC">动力电池热失控防扩散、碰撞/滚翻防护、防火阻燃、复材结构。</p></div>
+      <div class="step lvl-c" data-page-node-id="22DBvhMj6Bn2FGE7ZPBw6o"><span class="sn" data-page-node-id="xAgQnwHR0Mxlt8zteA2j1Y">07</span><h4 data-page-node-id="Wl6peM4KYwr2uU3WvXxPsh">安全测试验证</h4><p data-page-node-id="2BzOrOvry9OxRyfthtreJy">V 模型右侧：组件→系统→整机集成测试，场景生成与整机安全确认。</p></div>
+      <div class="step lvl-c" data-page-node-id="iVhl4GdUTiJnkPI8k0h2L0"><span class="sn" data-page-node-id="ycqC2vNxVLBxgZgL7EMEbu">08</span><h4 data-page-node-id="LmCyqvkGa4TPOKhBDSOINJ">运行安全论证</h4><p data-page-node-id="cdbLVBZt7qIf6KLDu32iqO">流程论证 + 产品论证（GSN 目标结构），空域、培训、应急运行能力。</p></div>
+    </div>
+    <div class="lvl-legend rv" data-page-node-id="nL2zCPpXNKMzsDOAB374oB"><span data-page-node-id="MirCDeY4WPLZWT2nIoZ0yK"><i style="background:var(--cyan)" data-page-node-id="khkCxrfABA7nNFGwJodYNg"></i>整机级 Vehicle Level</span><span data-page-node-id="IwAbqwEcZMRb0GCNSvthmC"><i style="background:var(--violet)" data-page-node-id="fHkeK2FwwUMeBJxV74QqQK"></i>系统级 System Level</span><span data-page-node-id="1Fc3HEHMfoLzIBCGeh725T"><i style="background:var(--green)" data-page-node-id="rEUlDHd4hOXieNYLANKdxz"></i>组件/运行级 Component & Operation</span></div>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="eBsLD2Yivdufhh4RkqQtUd">两种安全世界的碰撞：从汽车级到航空级</h3>
+    <div class="grid g3 rv" style="margin-top:14px" data-page-node-id="qSoZSMdAVKSm8o7gADIiyD">
+      <div class="card" data-page-node-id="0Q7aGterqNCcBEc8ge5G78"><div class="ic o" data-page-node-id="1TeP9YNPWLLWB3ErhGshjO">⚡</div><h4 data-page-node-id="6wIJcVIeTmQXuV5JjeCabF">新能源汽车体系</h4><p data-page-node-id="MIZqRTkzHGfd5GlFCPnHoN">擅长规模化、低成本；三电技术同源度约 <b style="color:#fff" data-page-node-id="LpXqPnKsDDlS268icVgcOF">70%</b>，但安全标准面向地面交通，事故可统计、可接受。<span class="src" data-page-node-id="t8AHtRjdRqQ6MU7S1h5TkL">（ch5 p15）</span></p></div>
+      <div class="card" data-page-node-id="zZeEXi0NChKH8RlAcoZ3BO"><div class="ic" data-page-node-id="Y4ct8qMTG8BQDEyD1Hje8z">✈</div><h4 data-page-node-id="VlxFC1IK8BO62kJQ1YeHyz">航空适航体系</h4><p data-page-node-id="m2R4Ty0Lntc8whE2MCa7B5">单机事故即重大公共风险；事故概率必须≤<b style="color:#fff" data-page-node-id="BCHEUMUTUki1cB3dmrnxm7">10⁻⁹</b>，事前强约束、全过程审定（TC/PC/AC）。<span class="src" data-page-node-id="6xLAz42i90QOHOthkoXvfh">（ch5 p28）</span></p></div>
+      <div class="card" data-page-node-id="DlqjK3CyEEz5IS9MPwdjDn"><div class="ic v" data-page-node-id="ev7UQJ3CXu19HWP6DUJ5m1">🔗</div><h4 data-page-node-id="UO8NG7N21QAy30wbS8YvWC">本作业的核心命题</h4><p data-page-node-id="K4mERDfHRSaNROMKzLvecq">同源技术<strong style="color:#fff" data-page-node-id="Y0WrTGezFgMNimYvaMM2fZ">必须按航空适航体系做系统级重构</strong>——含可靠性、冗余架构、功率密度与全生命周期验证。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 功能与场景 ============ -->
+<section id="scene" data-page-node-id="1uC4fcXtn6wHDnYn3Kz0Hz">
+  <div class="wrap" data-page-node-id="zdzcnEA4zplMsxl2mOXWwr">
+    <div class="rv" data-page-node-id="IpuCdLg1MYte08k9ya5DSO"><div class="sec-tag" data-page-node-id="HWnIitfWTQWJliWq1ENRXG">02 / FUNCTION & SCENARIO</div><h2 data-page-node-id="lrObubIEgkwPqqnb2QBW3G"><span class="num" data-page-node-id="QdduHJPaBfdqsXpvtmVKiE">02</span>整机功能与运行场景定义</h2>
+    <p class="sec-desc" data-page-node-id="Bl1CZ1b9uiPxs6elF8yOcn">安全分析的起点是「这台 machine 要在什么条件下做什么」。陆地航母是全球首个量产分体式飞行汽车：陆行体（母体）负责地面行驶与为飞行体补能，飞行体（子体）为六桨六轴双涵道纯电 eVTOL。分体式构型把飞行与地面场景<strong style="color:#fff" data-page-node-id="e4jlpk2CrC31rvdQdEv334">解耦</strong>，本身即是一种安全设计选择。</p></div>
+
+    <div class="grid g2 rv" data-page-node-id="Cuh0WM7loK26x7dx21fmmi">
+      <div class="card" data-page-node-id="8bkcDijvH1tNHEgRfkFPnz"><div class="ic" data-page-node-id="lNl7JdmU7B8ze3Q7EyGqNS">🚗</div><h4 data-page-node-id="PHEQpjlZAe0eQVfqXiby6D">陆行体（母体）</h4><ul data-page-node-id="EDn5LcxHKC0g0G4sePTNcI">
+        <li data-page-node-id="3aqOPOXdSFDnxTT3aaOpaK">3 轴 6 轮，车长约 5.5 m，可进标准车位/地下车库</li>
+        <li data-page-node-id="8nCVAfveowPWRbNNR9YFMn">全域 800V 碳化硅高压增程平台，CLTC 续航 &gt; 1000 km</li>
+        <li data-page-node-id="5sUkRnCzMWFJRQHTFWkPdl">行驶/停车时为飞行体充电，支持 5–6 次飞行任务</li>
+        <li data-page-node-id="OjZaGYPsZkVM9yAgN95snN">普通 C 类驾照即可驾驶（地面法规体系）</li>
+      </ul></div>
+      <div class="card" data-page-node-id="2IUoSxsMcJgfFS3GuvDzSj"><div class="ic v" data-page-node-id="WCYrfuyyPz63t1maeNHPTW">🛩</div><h4 data-page-node-id="iSpgnNIsFG2uJocQpNrnGl">飞行体（子体）</h4><ul data-page-node-id="6sjhitUiOu2VApfxQlbJH3">
+        <li data-page-node-id="CMA6EHHis6ceRrqVADdq7a">六桨六轴双涵道构型，碳纤维可折叠旋翼/机身</li>
+        <li data-page-node-id="pvLbAJrSVRXirmy4DYDQau">270° 全景双人座舱，可完全收纳于汽车尾箱</li>
+        <li data-page-node-id="SEQDGZXrYTsSNjXBDt3Ley">纯电驱动，数分钟内自动展开与锁止</li>
+        <li data-page-node-id="5w1qKjQl5bd7zvKgvPE9vo">垂直起降，无需跑道；最高速度约 200 km/h<span class="src" data-page-node-id="20HA2PHP221SpYJJplF8QX">（口径不一）</span></li>
+      </ul></div>
+    </div>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="wmU429KDp3xuVXJBwgev3M">基于运行设计条件（ODC）的四类场景</h3>
+    <div class="grid g4 rv" style="margin-top:14px" data-page-node-id="mr8jIpGAGBgCCmYHrbRjPI">
+      <div class="card" data-page-node-id="TfGfsFKqFuGPalN7C1leH1"><div class="ic g" data-page-node-id="NLSUZqe1IXfIp9PXxIncGK">A</div><h4 data-page-node-id="ZmjcBqXh12lbBOOo5wiGdM">地面行驶</h4><p data-page-node-id="BGn3B3HToPTGfBISuncyrY">道路交通常规风险；能量管理、高压系统安全、制动与转向冗余。</p></div>
+      <div class="card" data-page-node-id="hzRCPqxmOvRm47rhJF7KaH"><div class="ic o" data-page-node-id="fGYU9uj0S3cw4ikugvoQF1">B</div><h4 data-page-node-id="e1SrOH6uD2vhfjNtQi3XOH">分合 / 展开</h4><p data-page-node-id="ipanWKLE3RG4LT0kaTgKrC"><b style="color:#fb923c" data-page-node-id="4GRvpYz1584G6YeJeRVLlx">高风险转换态</b>：机械锁止是否到位、旋翼展开完整性、人因误操作。</p></div>
+      <div class="card" data-page-node-id="x6zDlwbuwLee8CoHLySO6m"><div class="ic" data-page-node-id="7mDuP9zQUiZ6lNXftitClh">C</div><h4 data-page-node-id="pQ2DAV7d9fOtMAPtPhDRRL">低空飞行</h4><p data-page-node-id="hxIBCiV2M5t1ECHC5vAzKF">起降/悬停/巡航；动力失效、碰撞避让、气象突变、空域冲突。</p></div>
+      <div class="card" data-page-node-id="aWZDnhGtIb4BiDeAMo4kN7"><div class="ic r" data-page-node-id="pBGBBZIDwBTvEmeyzGwJkG">D</div><h4 data-page-node-id="Mek1I0kPcCkWd7yuybDvCN">应急状态</h4><p data-page-node-id="b9XFJl9gD3busSxd6NzdV0">单/多旋翼失效、失控、火情、迫降；降落伞与自主着陆兜底。</p></div>
+    </div>
+
+    <div class="note warn rv" data-page-node-id="BiX2bvvDEDmfwEWuD2VqgF"><b data-page-node-id="FkoXAGNHaDkFMwuZe8B7Kb">关键洞察：</b>分体式设计把"飞行"与"地面"解耦，让各自采用最优动力方案（增程保续航、纯电保安全与低噪），避免了单一平台兼顾两场景的工程妥协——这本身就是教材所强调的<strong style="color:#fff" data-page-node-id="dtJVnS6OWmJZLBLf2gchhj">"通过分析功能与场景，选择系统架构"</strong>的正向设计思路。<span class="src" data-page-node-id="pzSjeRjl5Gn5S2aMtDbdNb">（ch5 p36 正向设计 / p85 基于场景的安全开发）</span></div>
+  </div>
+</section>
+
+<!-- ============ 3 危险源与风险 ============ -->
+<section id="hazard" class="alt" data-page-node-id="mW6FQ6usXEKqoCajH8rpmv">
+  <div class="wrap" data-page-node-id="zd0rjbJF0kAcsaHGT8IZwn">
+    <div class="rv" data-page-node-id="0cPYKjciLXFACnABU4wCVH"><div class="sec-tag" data-page-node-id="ORG1WByXeoQ0L1CPwibyoh">03 / HAZARD & RISK</div><h2 data-page-node-id="9uoodu3WnKsps9VhUgsQoo"><span class="num" data-page-node-id="4DCOKLyhkoZKoDSHSLPIr6">03</span>危险源辨识与风险评估（HARA）</h2>
+    <p class="sec-desc" data-page-node-id="yHCwKcHp0ELBlsm64E2IsV">按教材要求，先做整机危害分析与风险评估（HARA / FHA / STPA），再用「严重度 S × 发生概率 E × 可控性 C」三维度对危险源分级。以下为针对陆地航母识别的 10 项主要危险源。</p></div>
+
+    <div class="tbl-wrap rv" data-page-node-id="kYbT9ezYCwhl6uabFdNqm6">
+      <table data-page-node-id="KETFpM8uK65IezjEszzox4">
+        <thead data-page-node-id="90xJosc8KNnoz0yAr253eq"><tr data-page-node-id="1tdfhHPUvLTf3AZu7AXhTV"><th data-page-node-id="rZdqMVEvOjv4iOKK0w4irx">ID</th><th data-page-node-id="2F3s8oLFj45CHkN1EiZNuV">危险源 / 危害事件</th><th data-page-node-id="A63r0KDAg21hDLcWX0UHTm">所处场景</th><th data-page-node-id="IzcxATac2uwyfV2eCnTIAJ">后果</th><th data-page-node-id="eCtlu6JQaEgycgjj1i8NBI">S</th><th data-page-node-id="JYHQ6KHKoLIIEAp4KZCFwo">E</th><th data-page-node-id="d3lKVRCqGQhasKCIVsBpQJ">C</th><th data-page-node-id="qLs6RvqpsgZvkMSpSs2xRb">风险等级</th></tr></thead>
+        <tbody data-page-node-id="q2bKVuU2l5s0VaxqmahYmb">
+          <tr data-page-node-id="0IRqtgvHqc81jlugzeeBwp"><td data-page-node-id="m7t2gOLc6iU0UyCTZFBZic">H01</td><td data-page-node-id="21tF14kZuu8Bi7k7WQc8gL"><b data-page-node-id="lmomhGOavAQB3E3priaHqO">动力电池热失控</b>引发起火/爆炸</td><td data-page-node-id="tTZIqokglGqmufhOlJXYcp">飞行 / 充电</td><td data-page-node-id="UuagTJSyAqHqClgk7SNrtr">灾难性</td><td data-page-node-id="uZ9PZZSJY1CUCXQlYQu3C7">4</td><td data-page-node-id="auQC8z9PzoeBavna0Grvgo">2</td><td data-page-node-id="9LTVWlLV6AtaoOMFpO6Ucq">3</td><td data-page-node-id="6dv1cAdCpCgvfgzXp54vKq"><span class="pill h" data-page-node-id="AKuFoT7llHI0q2h6esu35F">高</span></td></tr>
+          <tr data-page-node-id="mLgxsOmI40RK87E1eixnWA"><td data-page-node-id="7i9XeB23oda4ZWZ5FEjsTu">H02</td><td data-page-node-id="JHv9xDm1BMTX8qXbfT9XXV"><b data-page-node-id="I8SCxpcfiDlQcFuKuwvxjE">多旋翼同时失效</b>导致失控坠落</td><td data-page-node-id="VMx0h6DcXzdFjKoHbI5RCH">飞行</td><td data-page-node-id="eoFx9JDkLKEoiGBNwvWDu5">灾难性</td><td data-page-node-id="KolS3ABUHPK14T0Y0F7D95">4</td><td data-page-node-id="jXr9XA9RAYDNyAo6IqJbE9">2</td><td data-page-node-id="69K3fYfuZralczHlgfoukK">3</td><td data-page-node-id="IWRmszJNwHFlpkSDmDWtAR"><span class="pill h" data-page-node-id="Prp3dNCaiyBruWeSFGEVMv">高</span></td></tr>
+          <tr data-page-node-id="bymzcRvvwzBDzBGxMWuQc9"><td data-page-node-id="xTBH5OPFPWlXu9Do22e9gm">H03</td><td data-page-node-id="HuFosSVdZZBwyaHYHvh64g">分合机构<b data-page-node-id="yjcCA0X5fK9GPJNsfIWUfF">锁止不到位</b>，飞行中脱落</td><td data-page-node-id="3YWRsIP37yDBFMh0c7LiKo">分合</td><td data-page-node-id="ftEgCXD0yaDI6HshEzMopO">灾难性</td><td data-page-node-id="j0meIpQOje3oQWfh37kLaW">4</td><td data-page-node-id="AeaNJfZzEglTSig769eHZ9">2</td><td data-page-node-id="d6SxERFmVU6fQRX8364pvo">4</td><td data-page-node-id="RZ1sPzk820H3sfF2sPDBSH"><span class="pill h" data-page-node-id="jdciSnmIZVcGUscNosMPzf">高</span></td></tr>
+          <tr data-page-node-id="BHnpOeAIdycUnWKaqA9CSE"><td data-page-node-id="A7jI5gAloMT4jM1gEPf2x9">H04</td><td data-page-node-id="BOXbsH01dxD1YW0OVy1ADh">飞控系统<b data-page-node-id="5v1MUW5gMiiuA0gCKk0Hm0">共因失效</b>（软件/电源/传感器）</td><td data-page-node-id="zxIQTDCV1ftimLMP95TEit">飞行</td><td data-page-node-id="rD8BXEst6OT4hFc2LVDNOt">灾难性</td><td data-page-node-id="RgD9G7JNiZYlEBoDnmoeNH">4</td><td data-page-node-id="iOCqFAF2PA6qYLNAwFqDgk">2</td><td data-page-node-id="qupL9gEh0JBQp8SCkLCkmd">3</td><td data-page-node-id="M55UdAT4akcVnJNlpF0lUh"><span class="pill h" data-page-node-id="xAJGWvofhMWS1F2mTIP5tB">高</span></td></tr>
+          <tr data-page-node-id="mPmnVfkS11inB28GNLwzry"><td data-page-node-id="QXjB4MoKVv6IBhqTY0NL4A">H05</td><td data-page-node-id="jUy9Eh69KnFoj2Uaqbekr8">低空<b data-page-node-id="plzFAD0OkTEkl6qsIAbTTU">障碍物/鸟撞</b>碰撞</td><td data-page-node-id="OW47KzvJ6WYXIJsxPeiiW8">起降 / 巡航</td><td data-page-node-id="3ncul9V0yHvqtDADCLudwr">严重</td><td data-page-node-id="l8rYYZhsftCSGz7bDXw0K6">3</td><td data-page-node-id="jAYlqEzHNGIm53XQtvlj27">3</td><td data-page-node-id="LJvf2GY0QFruFeTj0KNY0l">3</td><td data-page-node-id="boQmlyM9i5TB8pkD5bkkoK"><span class="pill m" data-page-node-id="Ckyb0KpzHYdiOtqFNAkpQX">中</span></td></tr>
+          <tr data-page-node-id="ykjzwFHTav97faZdDFq1se"><td data-page-node-id="CVt6616JuPg2urnhjJUrhX">H06</td><td data-page-node-id="24gRMSY2nB0XjsPXhpFVCi"><b data-page-node-id="x1WXPvQN1n56DVSCCuqdfV">雷暴/强风/暴雨</b>超出包线</td><td data-page-node-id="HRBPtT82aiLgKpxW2qV3c5">飞行</td><td data-page-node-id="lXh0Ec4HIezWub96BOZw0t">严重</td><td data-page-node-id="lClmFNHq48L9T6lO07mvXw">3</td><td data-page-node-id="XhJCBOIX2UrRw10HZhcw3D">3</td><td data-page-node-id="uxD2GWu6D5YkEO2Ro3JRAH">3</td><td data-page-node-id="mzRyHb3gbSmOHvXNVNFtVO"><span class="pill m" data-page-node-id="9Zz4Rbug8LzI6bTj6mQ1CT">中</span></td></tr>
+          <tr data-page-node-id="xbjEGmvL1nyBSu8K3hsgQm"><td data-page-node-id="Mqrduh0ZPrLV70XBIEXJ0T">H07</td><td data-page-node-id="cPgDDYuERRDg83DvoZlw1d">GNSS 干扰 / <b data-page-node-id="J8Fu492ACWv0wpb4iwBUV2">通信链路中断</b></td><td data-page-node-id="BlXbGZk855Sxzkd8YUBxd1">飞行</td><td data-page-node-id="eg5Xp7XE7HGt3Mi3v6tiaQ">严重</td><td data-page-node-id="f05M5caHlvoQsVKkA1TA2u">3</td><td data-page-node-id="okC870kScyEjDR9fBijfvM">2</td><td data-page-node-id="brSjqBKClzWqdNSfEIaMxB">3</td><td data-page-node-id="EZzB5VndNGfPzgeX4uPHFr"><span class="pill m" data-page-node-id="g0XoYuLCuuEkLA4KIVi0JS">中</span></td></tr>
+          <tr data-page-node-id="iGwSnTATBcAowr0uwHRp8M"><td data-page-node-id="VHNJxNgVow3vKjnlKRsZkd">H08</td><td data-page-node-id="JOBKDkhk3AFG21R7oSLJFW"><b data-page-node-id="YMzO49DGgssea119n68JEj">网络攻击</b>劫持飞控 / 电磁入侵</td><td data-page-node-id="ZMqiyHE6AV9rG662kpcMa5">全场景</td><td data-page-node-id="5UOPoCCQHwFtZ4awn67FL5">灾难性</td><td data-page-node-id="FLmFGg190D9DBONinulZxT">4</td><td data-page-node-id="rPAH1qJC34OdFSHmqkFT7E">1</td><td data-page-node-id="gKQIpf9sITbszAmf1ORfsT">3</td><td data-page-node-id="VmTA0m6JGdOIxuYNvmydSb"><span class="pill m" data-page-node-id="BWYgDBBoyPNEptYSttwcPa">中</span></td></tr>
+          <tr data-page-node-id="CXcnBJhX36bP4Pqjf7BVB2"><td data-page-node-id="aN9RPtY6QzXGJhF3YX1VMO">H09</td><td data-page-node-id="QKfylxUrEGgX6IFVDN5iCA">驾驶员/<b data-page-node-id="ZiXmG621CpHAOZ1seDvYSV">乘员误操作</b>（SOTIF）</td><td data-page-node-id="u0I5BF8ttIrQwg35yIHsKu">分合 / 飞行</td><td data-page-node-id="ebxmxa2Z8q3TTeiD6ksdp9">严重</td><td data-page-node-id="uCb3UfC12NJdpAwJqsAJx5">3</td><td data-page-node-id="S3UdMX1z1F4SqYP4swawbi">3</td><td data-page-node-id="rrpzsKGhaap2WgWfg8f68P">4</td><td data-page-node-id="uZ3cgdbPz0faY4orawTc2K"><span class="pill m" data-page-node-id="jtRJXWes92Dksl3z3LNs78">中</span></td></tr>
+          <tr data-page-node-id="7XsXS3AincaHShz9lpJT4m"><td data-page-node-id="6Mzp09mlvoWmoymyqzcJHw">H10</td><td data-page-node-id="QLLTXBExXy4W2M8Ist2IB3">地面<b data-page-node-id="ZQTrMt7JDc4zgiInHJwoU9">高压系统漏电</b>/充电故障</td><td data-page-node-id="906FFwvAr57FxVhosZEskp">地面 / 充电</td><td data-page-node-id="H1Yptfkw0qAfjZGKM6CnA0">严重</td><td data-page-node-id="ddkNybSUJyJDQ2KDDMU2hY">3</td><td data-page-node-id="fezIzCJLG1CwVDHHKBMBgW">2</td><td data-page-node-id="JEDFEoEEI8TgCbPxHg2x89">4</td><td data-page-node-id="ZRqXHGdTjhoWTuoJx59UFC"><span class="pill l" data-page-node-id="OXEFbtIE0UxU6Swyx6u7sX">较低</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src rv" style="margin-top:10px" data-page-node-id="7eJRGRHCnquRXBHJsBlmwv">注：S/E/C 采用 1–4 级定性赋值（4=最严重/最频繁/最难控），风险等级为课堂演示性评估，非产品实际审定结论；源自教材 HARA + S/E/C 方法。<span class="src" data-page-node-id="7jRmA06T2jMF6j8n95VdC0">（ch5 p87 HARA、p64 SOTIF）</span></p>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="3JDkast37z7CSO3dumNGgK">5×5 风险矩阵与危险源分布</h3>
+    <div class="rv" style="display:flex;justify-content:center;padding:10px 0 4px" data-page-node-id="bmlax2ywlpxzeGvtgOhZZe">
+      <div class="matrix" data-page-node-id="0GgKOuTHWNjxs9jKGnu6l1">
+        <div class="mx-cell mx-h" data-page-node-id="l8nRiOClrmD1IhxfV753NK">S\E</div><div class="mx-cell mx-h" data-page-node-id="kuHu4IzzKhUvUqT14WUXU4">1 极少</div><div class="mx-cell mx-h" data-page-node-id="oHte1309lyUfkIVYaKD6Xu">2 偶尔</div><div class="mx-cell mx-h" data-page-node-id="XGlwc1J2mhRfPBqPFbEJwh">3 可能</div><div class="mx-cell mx-h" data-page-node-id="W3PjvsAwQKOl2u3JafmP5i">4 频繁</div><div class="mx-cell mx-h" data-page-node-id="kc82yNejhfbi5v8N21q6ZN">5 常态</div>
+        <div class="mx-cell mx-h" data-page-node-id="ey4unZahZYcuyOBU3nVr3G">5 灾难</div><div class="mx-cell r4" data-page-node-id="pbOPQtYS8wrPMq7FIufDBV"></div><div class="mx-cell r5" data-page-node-id="L14w9Dg2p4Dl0a751VNkG1"></div><div class="mx-cell r5" data-page-node-id="iWLqQ9MHyUxMeQFCjcrmve"></div><div class="mx-cell r5" data-page-node-id="5BBnw9pxAIWt2iHRst72qy"></div><div class="mx-cell r5" data-page-node-id="iGKdFt5UL1KwIlwyEHgRaQ"></div>
+        <div class="mx-cell mx-h" data-page-node-id="WGBVcptE78FlfwUPXFoI1D">4 严重</div><div class="mx-cell r3" data-page-node-id="e1U4EHb3azySyyHG6RClhK"><span class="mx-dot" title="H08" data-page-node-id="KXCdks8wfAA5VgBPz7smCW"></span></div><div class="mx-cell r4" data-page-node-id="ylPHEr8gFODq2AduF32oXe"><span class="mx-dot" title="H01" data-page-node-id="dEM4HNb1jiy7v7AOcB0Tz5"></span><span class="mx-dot" title="H02" data-page-node-id="PcNhPNdIdSjjUFaLTby0qe"></span><span class="mx-dot" title="H04" data-page-node-id="XkdPIWQWXJLVXzEJJX7a13"></span></div><div class="mx-cell r4" data-page-node-id="i9yCuAbX5SFxSC1wUaiInk"></div><div class="mx-cell r5" data-page-node-id="FPwNKF4NIUf9kNrPC1gd26"><span class="mx-dot" title="H03" data-page-node-id="iHH1H8MITy3ZBUJND0REzL"></span></div><div class="mx-cell r5" data-page-node-id="OO5T6IaTqxHFLdcxbQdFPk"></div>
+        <div class="mx-cell mx-h" data-page-node-id="pdBsVpKV1xyxj2Gez6KU5B">3 中等</div><div class="mx-cell r2" data-page-node-id="4BzC6UOPjNokiKIIbz7mMp"></div><div class="mx-cell r3" data-page-node-id="Yh7eYKFFEpjnWphgQMEx7j"><span class="mx-dot" title="H07" data-page-node-id="trCijtUubTPLhIksDUjGfx"></span><span class="mx-dot" title="H10" data-page-node-id="BbuQLwf7ybGrOyw8lFVpGm"></span></div><div class="mx-cell r3" data-page-node-id="EV4JVCxLBcBHK3mWGfWfeW"><span class="mx-dot" title="H05" data-page-node-id="hsSncGSNBo5qiCs5usCNHF"></span><span class="mx-dot" title="H06" data-page-node-id="H33aLvewIr30ZhfmWhvW5a"></span><span class="mx-dot" title="H09" data-page-node-id="0s0Si8rOYKHCUbW2X5KlHk"></span></div><div class="mx-cell r4" data-page-node-id="dSKFbxo8ZAxudc7sLozHBR"></div><div class="mx-cell r4" data-page-node-id="3GSyUKAAizPo204dmO2PkY"></div>
+        <div class="mx-cell mx-h" data-page-node-id="WJIfgpKGWCiXu0ssxEN5fG">2 轻微</div><div class="mx-cell r1" data-page-node-id="gd7PVSNXrDkdZEaqBoVokY"></div><div class="mx-cell r1" data-page-node-id="8GC3Bm3rUHZZjAX48VE9Lv"></div><div class="mx-cell r2" data-page-node-id="cISdNsf5ohrdFmIHSjIE2L"></div><div class="mx-cell r3" data-page-node-id="8Z21RJKbqSgtMxpKhfqbmW"></div><div class="mx-cell r3" data-page-node-id="e5dfokLyXhhJk2HKXWyzxA"></div>
+        <div class="mx-cell mx-h" data-page-node-id="bh4anjs7iwFJfifBCmup8V">1 可忽略</div><div class="mx-cell r1" data-page-node-id="9G799pFzDkStssbrqVT6w3"></div><div class="mx-cell r1" data-page-node-id="n9nGdJh8HBOf6wfTH7ad0s"></div><div class="mx-cell r1" data-page-node-id="J19Vu2y6mpz9sIuujQ9NoA"></div><div class="mx-cell r2" data-page-node-id="8iIsGY3O7PKzncdtDvvmrl"></div><div class="mx-cell r2" data-page-node-id="BvUYs9W4XA4nuPOFS854N2"></div>
+      </div>
+    </div>
+    <div class="legend rv" data-page-node-id="1U8fhpFM7snvrS5Gf525dk"><span data-page-node-id="eiImEdWgno3gAA7UhtdscM"><i class="mx-dot" style="background:#fff" data-page-node-id="xDRSSjdNK1UfH8A221aFa1"></i> 每个白点代表一个危险源（悬停查看编号）</span><span style="color:var(--red)" data-page-node-id="GuwFB0D6e3GxCXEEL3ak2R">■ 红=不可接受，必须通过架构与措施降至 ALARP</span><span style="color:var(--green)" data-page-node-id="4vhPKZcuGPshoHMsRydqEg">■ 绿=可接受</span></div>
+  </div>
+</section>
+
+<!-- ============ 4 分析方法 ============ -->
+<section id="method" data-page-node-id="39s2KaEc9QNqe0BeBfh1Hv">
+  <div class="wrap" data-page-node-id="EfvaHwDXaLabqqG0C8SOXV">
+    <div class="rv" data-page-node-id="QSrEg6rZAKIiB9XomMv7XM"><div class="sec-tag" data-page-node-id="5llTyOFhamxInU8ESxEni0">04 / SAFETY ANALYSIS METHODS</div><h2 data-page-node-id="Fumwg9yDJBpCA1JBjYDqf6"><span class="num" data-page-node-id="cAxt87dVRsty9Sl9aHc7y9">04</span>安全分析方法：FTA 故障树与 STPA</h2>
+    <p class="sec-desc" data-page-node-id="eAhUEhwMj5iIwaHPLOWxoS">教材指出民航领域成熟的分析工具包括故障树（FTA）、共因分析（CCA）、事件树（ETA）、蝴蝶结（Bow-Tie）、贝叶斯网络（BBN）等；对飞行汽车这类"人-机-环境"耦合系统，还需 STPA 这种基于控制结构的系统理论方法。下面以「坠机」为顶事件做故障树演示。</p></div>
+
+    <div class="fta rv" data-page-node-id="o96hggjFfdtgRo6aIwhMLa">
+      <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" data-page-node-id="xvKOva4uw5D5zYGKraBp7v">
+        <defs data-page-node-id="rkt9hzvrSz3NgzY3krrtaG"><style>.gate text{fill:#e6edf6;font-size:11px}.ev text{fill:#cbd5e1;font-size:10px}.lnk{stroke:#4a6079;stroke-width:1.6;fill:none}</style></defs>
+        <!-- top -->
+        <g class="gate" data-page-node-id="rIE8WiLZrlgMflQcHZ6MQA"><path d="M280 20 L420 20 L420 52 L280 52 Z" fill="rgba(248,113,113,.18)" stroke="#f87171" stroke-width="2" data-page-node-id="iM35STKPcSfNklsSesCbBj"/><text x="350" y="40" text-anchor="middle" data-page-node-id="COXa8r5KRoPuEuOCW4OHam">顶事件：飞行器失控坠落</text></g>
+        <!-- OR gate level1 -->
+        <g class="gate" data-page-node-id="AHYDD7QORtjMbbl3kvi7QW"><path d="M300 88 Q350 76 400 88 L400 118 Q350 130 300 118 Z" fill="rgba(251,146,60,.16)" stroke="#fb923c" stroke-width="1.8" data-page-node-id="FW5xpv27oNCuzF382eHyuh"/><text x="350" y="107" text-anchor="middle" data-page-node-id="LBhTDZhWa1hKun4ICgACJe">OR</text></g>
+        <path class="lnk" d="M350 52 V88" data-page-node-id="Xl6BQp6d9Ew21DbttdYhgT"/>
+        <!-- level2 gates -->
+        <g class="gate" data-page-node-id="G9HJ8EtOC89QG148wCssYk"><path d="M120 156 Q160 146 200 156 L200 182 Q160 192 120 182 Z" fill="rgba(251,146,60,.14)" stroke="#fb923c" data-page-node-id="tcX0ZTTAmy1K5kLyXGJT5O"/><text x="160" y="174" text-anchor="middle" data-page-node-id="EkjZVDvxGmfu6vsML3UIb5">AND</text></g>
+        <g class="gate" data-page-node-id="H3A95cheOWcBzbSiTLBbdO"><path d="M310 156 Q350 146 390 156 L390 182 Q350 192 310 182 Z" fill="rgba(251,146,60,.14)" stroke="#fb923c" data-page-node-id="sNdNVC0tnmpShgIUS3wNAe"/><text x="350" y="174" text-anchor="middle" data-page-node-id="Ism0pUIhiWFpncIUzeBJYP">OR</text></g>
+        <g class="gate" data-page-node-id="A905ZJE1rfhS41PoKgaprX"><path d="M500 156 Q540 146 580 156 L580 182 Q540 192 500 182 Z" fill="rgba(251,146,60,.14)" stroke="#fb923c" data-page-node-id="aJizhZFnfe78k3oVxWLlkI"/><text x="540" y="174" text-anchor="middle" data-page-node-id="KFW038OfsnyzkeE2z2W3W8">OR</text></g>
+        <path class="lnk" d="M160 118 V156 M350 118 V156 M540 118 V156" data-page-node-id="ZEK54d8ZWiZ5QcVqAVGAqG"/>
+        <!-- basic events -->
+        <g class="ev" data-page-node-id="PhA8EeioVEH8qR48PLP1im">
+          <circle cx="90" cy="238" r="18" fill="#16223a" stroke="#38bdf8" data-page-node-id="hHwQ6Xn7QgIV3malVaU1hD"/><text x="90" y="242" text-anchor="middle" data-page-node-id="um0Pl7I5Ftt4AbZnndlFA6">E1</text><text x="118" y="242" data-page-node-id="iiq1VdKBtYv6kjEUomF0OG">主飞控失效</text>
+          <circle cx="230" cy="238" r="18" fill="#16223a" stroke="#38bdf8" data-page-node-id="W1oBH5HfdfdF6G2Adb5Jut"/><text x="230" y="242" text-anchor="middle" data-page-node-id="3YllgSkE9HS1HBJWhGlMRB">E2</text><text x="258" y="242" data-page-node-id="LanTH9zcp1wCEK8wA0mQlP">备份未接管</text>
+          <circle cx="310" cy="238" r="18" fill="#16223a" stroke="#38bdf8" data-page-node-id="uAhEqDxsRrVnxXkKiEIwfc"/><text x="310" y="242" text-anchor="middle" data-page-node-id="BxMbLGI7aYbTBnTepajtjy">E3</text><text x="338" y="242" data-page-node-id="FIEsNRud9nDdk0yp7FIkE0">≥3 旋翼失效</text>
+          <circle cx="390" cy="238" r="18" fill="#16223a" stroke="#38bdf8" data-page-node-id="ChVZf0wcQb1KvwinoBqxTK"/><text x="390" y="242" text-anchor="middle" data-page-node-id="HcWp1A5UhGHWdwzMUCgBR5">E4</text><text x="418" y="242" data-page-node-id="WJ0J5CNghX1YqixERQA7Gr">全机断电</text>
+          <circle cx="500" cy="238" r="18" fill="#16223a" stroke="#38bdf8" data-page-node-id="ItgjgFBVwbigFDiX2qTBP9"/><text x="500" y="242" text-anchor="middle" data-page-node-id="BODSFs4jzBBUsA8fw4fPX1">E5</text><text x="528" y="242" data-page-node-id="yHnBD3SVOGBGUxsSE5s3AL">降落伞未开</text>
+          <circle cx="580" cy="238" r="18" fill="#16223a" stroke="#38bdf8" data-page-node-id="iEarPDQbj0i1AaEBPpDS8s"/><text x="580" y="242" text-anchor="middle" data-page-node-id="KlJchIlHRcCwGBM1navuLM">E6</text><text x="608" y="242" data-page-node-id="DEqV6jTDiElJ7lVjEjukEm">结构解体</text>
+        </g>
+        <path class="lnk" d="M160 182 V210 H90 V220 M160 182 V210 H230 V220 M350 182 V210 H310 V220 M350 182 V210 H390 V220 M540 182 V210 H500 V220 M540 182 V210 H580 V220" data-page-node-id="2tWGWFB3fTgqKvLUkPMOUd"/>
+        <!-- CCA note -->
+        <g data-page-node-id="ZDx8RwKPeae9Bm4gVNHgOe"><rect x="150" y="296" width="400" height="66" rx="10" fill="rgba(167,139,250,.1)" stroke="rgba(167,139,250,.35)" data-page-node-id="m4g2W1aPe6AUxmKmo7A98L"/>
+        <text x="350" y="318" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="monospace" data-page-node-id="ODk31vif2Cybb3r7x8BEUe">共因失效 CCA：E1/E2 同源于电源或软件 → 需多样性冗余</text>
+        <text x="350" y="340" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="monospace" data-page-node-id="DiVXK2lhCNzOkmqELvVrGA">定量目标：顶事件概率 ≤ 10⁻⁹ / 飞行小时</text></g>
+      </svg>
+      <div class="legend" data-page-node-id="emuAebVBNSlRRICSGeEHky"><span data-page-node-id="N06Xu3cdGXaBYJQsyz28f3"><b style="color:#f87171" data-page-node-id="2Dw6H7SA8hmMt0SlpkM6Ap">矩形</b>=顶/中间事件</span><span data-page-node-id="dviU9FtjeTFRUqHW7neFeR"><b style="color:#fb923c" data-page-node-id="8L6XPIonzZuzvT7e3nfmwd">AND/OR</b>=逻辑门</span><span data-page-node-id="ny1kPUqKknEFHqdR7XJF8V"><b style="color:#38bdf8" data-page-node-id="6CmIjKeN04BG5G19OZVQql">圆形</b>=基本事件</span><span data-page-node-id="IdMk2VR8uiuOrQwVbqWehN"><b style="color:#a78bfa" data-page-node-id="GqrRO5P292DoaAuAl216Fl">紫框</b>=共因约束</span></div>
+    </div>
+
+    <div class="grid g2 rv" style="margin-top:24px" data-page-node-id="98mOViG5lNI8mKNC8vjaTs">
+      <div class="card" data-page-node-id="3ykxZw9hQgtyPTloLP5ECB"><div class="ic v" data-page-node-id="H5EYNH9ipPbiJOUKbVmSLY">🕸</div><h4 data-page-node-id="hNbeiHcaGXC9PEbFEc0DXa">STPA：从控制结构找不安全行为</h4><p data-page-node-id="GubtYGGpoe0vLAvAk3d7Q8">把飞行器抽象为「人—ADS—飞行器平台—环境」控制回路。STPA 不只关注部件失效，更关注<strong style="color:#fff" data-page-node-id="vOU4roNIUEaNkXGOhYg3zY">控制动作缺失/错误/时序不当</strong>（如飞控未发出避障指令、模式切换反馈延迟），适用于高度自动驾驶的飞行体。</p></div>
+      <div class="card" data-page-node-id="esA2DCkoTzhLshIV73qQth"><div class="ic o" data-page-node-id="YlCDrfBCHy0Lepc2qF3q0u">🎗</div><h4 data-page-node-id="vjmfH9YchKaVRZx8EfuIEl">Bow-Tie：把预防与缓解连起来</h4><p data-page-node-id="iAz4cXcbejExN6Mb3cWuyL">以「电池热失控」为顶事件：左侧预防屏障（BMS 监控、热隔离、阻燃材料）→ 顶事件 → 右侧缓解屏障（不扩散设计、迫降、灭火、撤离）。与 FTA/ETA 结合，直观展示屏障完整性管理。<span class="src" data-page-node-id="4OfJPu1HPyBmDyXLY8dipz">（ch4 p39 Bow-Tie）</span></p></div>
+    </div>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="kUMEDUEgj7kGrfJPqllDCn">FMEA 失效模式与影响分析（节选）</h3>
+    <div class="tbl-wrap rv" data-page-node-id="jjFHnuqFvVPjKR21vAlgn9">
+      <table data-page-node-id="vCr7a3s48nuH6jAC11OfNc">
+        <thead data-page-node-id="xs1fr24vTX1XfqF4dumlc7"><tr data-page-node-id="JuQ6EIuE3P2SpBcHJlZUPu"><th data-page-node-id="9msZVAPhO8ttO13qrbrkVW">系统/部件</th><th data-page-node-id="UnFAoqZHGzqPr6Pen2iqSF">失效模式</th><th data-page-node-id="3ovhSLT0M7FdcqLc0s3ASo">失效影响</th><th data-page-node-id="Rda6FeuKm7xO4oDsOzFHEr">探测度 D</th><th data-page-node-id="ItAHDl5XGI9R2l8mk8RbJc">现有设计控制</th><th data-page-node-id="HP81Ge97GCo6BkC6EwA9Kz">RPN*</th></tr></thead>
+        <tbody data-page-node-id="WEAjaRYG08dp47QxiuBmkH">
+          <tr data-page-node-id="kqR3wnWI3EGIC04g8MkH7f"><td data-page-node-id="Cg45l9zLQNe57uYbapva4F"><b data-page-node-id="KXBarOl1DZCETNgYgAAamy">电推进单元</b></td><td data-page-node-id="0HbPiibECYdZdUVbNBX6UO">单电机停转</td><td data-page-node-id="2yMWAAjBeEhYSGlmPbfjRF">推力不对称，偏航</td><td data-page-node-id="5rFCJKyJtZRNQBJMgy6srA">2</td><td data-page-node-id="rWykWGhZlkB5rvKsyxIGt8">六旋翼余度 + 毫秒级控制重构</td><td data-page-node-id="UB81WGlYM24Wn3naPlsRcc"><span class="pill l" data-page-node-id="K3PWnF5K73mUawPfhfF7IE">低</span></td></tr>
+          <tr data-page-node-id="mKd4Ub76s4aJywl6MpcrCq"><td data-page-node-id="4AKM5FBRg1EH6hNUfuP6EW"><b data-page-node-id="qEqPpffQvemh20SWICs7AW">动力电池包</b></td><td data-page-node-id="XoYHYuaaWADNvZHIotii1T">单电芯热失控</td><td data-page-node-id="Nfnh75ksIxmi3aNwuCeFN6">起火/爆炸</td><td data-page-node-id="ZGFRYaej58WBRDCbB1qm5O">2</td><td data-page-node-id="8Vj8byQEUPIi6GDs9DLV3i">BMS 双冗余、防扩散、温度≤150℃</td><td data-page-node-id="8UfVE9lGQe8Xy9llEuAEKi"><span class="pill m" data-page-node-id="xhRQSbKO4OBWs5pYxaom4F">中</span></td></tr>
+          <tr data-page-node-id="MbaE4Q9e8MLfBlBExBn2Uj"><td data-page-node-id="8KFszY5HOnA2fCDuoNI18O"><b data-page-node-id="WwXiOgO058dRUXYu7qSCwY">飞控计算机</b></td><td data-page-node-id="spGQPWm0YEvh9IWMMLGl1p">主套死机</td><td data-page-node-id="xFdF29jtY8dsfS3JLMbtdb">控制丧失</td><td data-page-node-id="WQWOdfldqldFCtnKdy9j2x">1</td><td data-page-node-id="uzKyptGjAGKrsBFfJclTF1">双备份飞控，独立供电与传感</td><td data-page-node-id="99SOgTqTct09n9VDTXT4tP"><span class="pill l" data-page-node-id="PEWnCfnFFlDi8fB8BRdxba">低</span></td></tr>
+          <tr data-page-node-id="iIbhBWcwBJvI1Xt3ySE5tN"><td data-page-node-id="NqgrEhWdjj0tJ31FSv9jni"><b data-page-node-id="fZW45O2Ji9HdP0lL7x5NN0">分合锁止机构</b></td><td data-page-node-id="2BlGVcLxP3xiRBC4jwp4QH">锁止未到位</td><td data-page-node-id="ZQuJ1n6ME51zmp5nTC6pjI">飞行中分离</td><td data-page-node-id="C4QYLGYr8fqOqL0QwNgwU6">3</td><td data-page-node-id="5bu34IreDjrePVvwauuAZ8">机械+电子双重锁止与状态反馈</td><td data-page-node-id="OFXkFsZAYP6f0cQiSTdhWg"><span class="pill m" data-page-node-id="kEia82CuGuUHd10ImYT6CD">中</span></td></tr>
+          <tr data-page-node-id="AYQAZ46Mxf2yGKvtsKCJug"><td data-page-node-id="CSMdhGVvEM5veBHAn5oKuF"><b data-page-node-id="VgCjBPkyDSq6f8hA1QACQh">通信链路</b></td><td data-page-node-id="Z5WZaoEY5owChn3n3G2EK4">链路中断</td><td data-page-node-id="cDFchsQs1dGPwoUxnHzc7V">失去地面监控</td><td data-page-node-id="m8zGvDDU3cwVGhAC1B3pKl">2</td><td data-page-node-id="ID64o9cVWLziWxdfKZQiYA">多余度通信 + 自主飞行降级模式</td><td data-page-node-id="TlNiI5NojGnciTKnCiZUmq"><span class="pill l" data-page-node-id="FEhrCBO2spcjDLdqbcxf6C">低</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src rv" style="margin-top:10px" data-page-node-id="sIfyooBwevB9SqmKHzTwCD">*RPN（风险优先数）为 S×O×D 定性简化示意，用于展示 FMEA 思路，非厂商实际数据。<span class="src" data-page-node-id="veeUkDvl0fiZ0tlm1vDO6g">（ch5 p87 FMEA / FMEDA）</span></p>
+  </div>
+</section>
+
+<!-- ============ 5 安全架构 ============ -->
+<section id="arch" class="alt" data-page-node-id="uZTHBMuhjM3nL3ENy1l0W4">
+  <div class="wrap" data-page-node-id="VGZnHGHGwxZ3j4UxUx2GcO">
+    <div class="rv" data-page-node-id="h0RSBkUdExvm9IAj2QnTBh"><div class="sec-tag" data-page-node-id="7Zv0OKwI8v2drsXPCBRxte">05 / SAFETY ARCHITECTURE</div><h2 data-page-node-id="Hs9s8FXHUDEnM6gJl2D0E5"><span class="num" data-page-node-id="q9uNFLBFvx52XaiIwmhgmc">05</span>系统安全架构设计：冗余与容错</h2>
+    <p class="sec-desc" data-page-node-id="M17dx8umN3Gwac032uh2nB">教材给出典型安全架构（1oo1、1oo2、2oo2、1oo3、2oo3、1oo2D）与「三重冗余体系：飞控、能源、通信」。陆地航母采用<strong style="color:#fff" data-page-node-id="mGMiyNJOzreQWxOuBmxXPf">双备份飞控 + 三冗余动力 + 多余度通信</strong>，并配备行业罕见的低空整机降落伞，体现了"单点故障不影响安全、多点故障仍能迫降"的纵深防御思想。</p></div>
+
+    <div class="arch rv" data-page-node-id="D3mJzccawUR0fUb4GEUvQF">
+      <div class="arch-card" data-page-node-id="jIc2IgrGql01Kh7b3La3LC">
+        <h4 data-page-node-id="CzvTXIm5TqIIbXxbM0UEDn">① 飞控冗余 · 双备份 + 2oo2 比较</h4>
+        <div class="arch-row" data-page-node-id="TjHOUrTlztdvXwIlk4XZH8"><span class="node" data-page-node-id="99RbKQkz0elxOyKtML04WF">主飞控 A</span><span class="arrow" data-page-node-id="lHiV0OAh9ZdWIU2nO9Hux2">∥</span><span class="node bak" data-page-node-id="LuF7Dc3pM8zIfdsybgudgS">备份飞控 B</span><span class="arrow" data-page-node-id="TNgbinBDluimCkDr5SCY2F">→</span><span class="vote" data-page-node-id="mrA1xgfeMiFoxIKfGvNHl4">2oo2 表决</span></div>
+        <p style="font-size:13px" data-page-node-id="RkvKRcdYLJgFzllHCDDgCa">每套飞控有独立备份，任一失效时另一套立即接管；结合 3 余度飞控导航（教材所述"多余度传感"），避免共因失效。</p>
+      </div>
+      <div class="arch-card" data-page-node-id="Ike9bOWXUVpOaSBgCjhGJE">
+        <h4 data-page-node-id="lwEDKx5xX9ymTNAIRDH4jx">② 动力冗余 · 六旋翼 + 三余度</h4>
+        <div class="arch-row" data-page-node-id="XIgLn0hiw05tTM2ckLyAkV"><span class="node" data-page-node-id="CO2IroEjDE6pDnq5RUblk2">旋翼 1–6</span><span class="arrow" data-page-node-id="vkSBF7V48OCigCTUDYUvnJ">→</span><span class="vote" data-page-node-id="ALaSWD21TjaoulSpK7Oqxh">失效 2 副仍可控</span></div>
+        <p style="font-size:13px" data-page-node-id="t7wQ7dbJZg1pSdHgzkpKZA">六轴六桨双涵道构型，即使 2 副旋翼失效，控制系统毫秒级重构保持稳定并安全着陆；三冗余动力架构提升容错上限。</p>
+      </div>
+      <div class="arch-card" data-page-node-id="lm8hhyPJNpscRLR6UdZW0U">
+        <h4 data-page-node-id="iE3M84cdBD7BK0qG6c5tNY">③ 能源 / 通信冗余</h4>
+        <div class="arch-row" data-page-node-id="V97PuWgG95pgizBBm3uILy"><span class="node" data-page-node-id="zaeLfDPHidh3FMndvvdK8G">能源 A/B</span><span class="node bak" data-page-node-id="wkcDl2pfi8zJztqrA4E9Xo">高低压双路</span><span class="node" data-page-node-id="XqFU8fcaHmQhmZEuB0lXwm">通信多链路</span></div>
+        <p style="font-size:13px" data-page-node-id="8mEFCk20P86ZeVrIWsJard">2 余度动力能源 + 2 余度高低压供电 + 多余度通信；电池 BMS 双冗余，预留 ≥20% 安全电量保障备降。</p>
+      </div>
+      <div class="arch-card" style="border-color:rgba(52,211,153,.4)" data-page-node-id="M2Fqm0vHGtxk1ESw5mVbbi">
+        <h4 data-page-node-id="T0sJjSLX2xo0jr23Cz7qyd">④ 最后防线 · 整机弹道降落伞</h4>
+        <div class="arch-row" data-page-node-id="yohfuBRCjggBDyzgEcDe7L"><span class="node" style="background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.35);color:#6ee7b7" data-page-node-id="6V7RtQM6JIBfQN4LBT6PMV">全机开伞 @ 50 m</span><span class="arrow" data-page-node-id="NuGGWx0XdinYf5m4YsShUK">→</span><span class="vote" style="color:#34d399;background:rgba(52,211,153,.1)" data-page-node-id="BxpKDEJwjpH0Wruwm5seU6">5.2 m/s 缓降</span></div>
+        <p style="font-size:13px" data-page-node-id="GsqqDzc69oPjuhvAjOKeyj">当所有推进失效时自动弹射开伞；最低工作高度约 50 m（行业通常需 200 m 以上），为低空城市运行提供关键兜底。</p>
+      </div>
+    </div>
+
+    <div class="note rv" data-page-node-id="mTuNAWAJ08P7WJssWMV4iq"><b data-page-node-id="cqDw5MhUNssTw8PbC97rN6">为何这样设计？</b>航空安全的哲学是<strong style="color:#fff" data-page-node-id="XE27mECYSFJhRo8EzbKQPA">"不允许单点故障导致灾难"</strong>。教材强调 10⁻⁹ 的失效概率必须靠冗余架构与共因分析（CCA）共同实现——不是简单地"多加一套"，而是要保证备份之间<strong style="color:#fff" data-page-node-id="fDBaPBIpoOecM6jNvQcEvJ">独立、多样、可检测</strong>，否则主备同源反而形成共因失效。<span class="src" data-page-node-id="UKfDtP4OISDY6ss2XCpdBj">（ch5 p15、p87 典型安全架构与 CCA）</span></div>
+  </div>
+</section>
+
+<!-- ============ 6 五大支柱 ============ -->
+<section id="pillars" data-page-node-id="0zraQjkwxWfRNqAbKBIDLG">
+  <div class="wrap" data-page-node-id="CxMXsxCBfTnXbrwvkYvtYq">
+    <div class="rv" data-page-node-id="WzIeb3VbBMEJoiW9ugYtTW"><div class="sec-tag" data-page-node-id="WJyTMwmWaPt8zKNeTVxUh5">06 / FIVE SAFETY PILLARS</div><h2 data-page-node-id="oSbrvlfXUygmolFArWMLsf"><span class="num" data-page-node-id="WtL9PNIcPCZMzNPHDe6JrA">06</span>五大安全支柱在飞行体上的落地</h2>
+    <p class="sec-desc" data-page-node-id="keRh9h7UFEllNwX2nwg167">教材将自动驾驶安全系统工程归纳为五大支柱：被动安全、功能安全、预期功能安全（SOTIF）、行为安全、信息安全。这套框架同样适用于飞行汽车。雷达图展示五维度成熟度（课堂分析性评分），右侧逐项给出针对陆地航母的具体分析。</p></div>
+
+    <div class="pillars rv" data-page-node-id="up1HeeyBXfo6PxMPMnQDK7">
+      <div class="radar-box" data-page-node-id="stpQDijBEv3SsrWMaUPGgV">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" data-page-node-id="t9S8QzdOINkoUJphxeCLR1">
+          <g transform="translate(160,150)" data-page-node-id="oBiWPMlTKnyXI4w6qY7n3u">
+            <g stroke="#2f4560" fill="none" data-page-node-id="XFhioFtjCqffCHlZWOtBLm">
+              <polygon points="0,-105 100,-32 62,85 -62,85 -100,-32" data-page-node-id="7bP1GL95Tn82u5u0QCQiod"/>
+              <polygon points="0,-70 67,-21 41,57 -41,57 -67,-21" data-page-node-id="2PZ0pYnk6fiUhOL2WalF0X"/>
+              <polygon points="0,-35 33,-11 21,28 -21,28 -33,-11" data-page-node-id="p03ckq5ki693KfclNGABiJ"/>
+            </g>
+            <g stroke="#243449" data-page-node-id="w7UEYCQ4FC5WH4xpJw0tqV"><line x1="0" y1="0" x2="0" y2="-105" data-page-node-id="CvsEQgYuQT97ba4nyoseC6"/><line x1="0" y1="0" x2="100" y2="-32" data-page-node-id="TJehhX1XCpnSPWcN0qpI1o"/><line x1="0" y1="0" x2="62" y2="85" data-page-node-id="J2gL9Xu0oHedBNkOqytsYg"/><line x1="0" y1="0" x2="-62" y2="85" data-page-node-id="A0qWXIdb83lsW0HvUdOGQ0"/><line x1="0" y1="0" x2="-100" y2="-32" data-page-node-id="x0CaWjf8nC0UHiG3fqyPs5"/></g>
+            <polygon points="0,-78 62,-20 50,68 -37,51 -58,-19" fill="rgba(56,189,248,.22)" stroke="#38bdf8" stroke-width="2" data-page-node-id="pBRgOe3Z5Fn0AvDvYDa4ds"/>
+            <g fill="#38bdf8" data-page-node-id="Z0GIlu7tVY4hpQEKdjEtIZ"><circle cx="0" cy="-78" r="3.5" data-page-node-id="lzjPmKtNJHXtPXY4JBQZ89"/><circle cx="62" cy="-20" r="3.5" data-page-node-id="O1YZjbDRpAxHbFoSFj5CW7"/><circle cx="50" cy="68" r="3.5" data-page-node-id="gJBvX7EpFX5iyL9lOwofHn"/><circle cx="-37" cy="51" r="3.5" data-page-node-id="icSpLVHWajwYBl0lSjkGAx"/><circle cx="-58" cy="-19" r="3.5" data-page-node-id="gmpfZBuEwHH5vTc9tGCdBu"/></g>
+            <g font-size="10.5" fill="#9fb0c6" font-family="sans-serif" text-anchor="middle" data-page-node-id="xPjPDF66R4muM5NP2V5Rnr">
+              <text x="0" y="-118" data-page-node-id="ORMP4jMlPcPwaPFdrjFCqE">被动安全</text><text x="122" y="-36" data-page-node-id="5nPdwwNS7jyEv53PnraBc7">功能安全</text><text x="78" y="102" data-page-node-id="1GshyFbimxVaHDApW8E82F">SOTIF</text><text x="-78" y="102" data-page-node-id="eGnAQFHyxunUPfeKjuC0Ap">行为安全</text><text x="-122" y="-36" data-page-node-id="Z6KJKQPJ33hfcKtyaqxR3o">信息安全</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="pillar-list" data-page-node-id="wHQvZwShXrYkQA94NDGGjg">
+        <div class="pillar-item rv" data-page-node-id="u3ArgIkbIHYsGkSA6ObUOn"><div class="name" data-page-node-id="3QdXlvBUleDuxRrphg2Vgw"><i style="background:#34d399" data-page-node-id="vVjiNG0BgoHa7TgveaYpYW"></i>被动安全 Passive Safety</div><div class="std" data-page-node-id="xlFiDuXRRF0V9BURE4zsRH"> crashworthiness / 整机伞</div><div class="desc" data-page-node-id="7aSgDrGL9WBmYrJC7U42Zp">多维碰撞安全（纵/横/垂），碳纤维机身吸能、约束系统；整机弹道降落伞提供坠毁前的最后保护。<span class="src" data-page-node-id="JqtKtOlIDvcyk9DETCqVgn">（ch4 p38 多维 crashworthiness）</span></div></div>
+        <div class="pillar-item rv" data-page-node-id="FMScdHru9uXlfXXEHvD1tc"><div class="name" data-page-node-id="JWM4U7CtFknPvaVpmUG1h8"><i style="background:#38bdf8" data-page-node-id="jlnO1pGYH2rpKSYucZH8k9"></i>功能安全 Functional Safety</div><div class="std" data-page-node-id="bjtqCw6Br7g6nxyguYAx3V">DO-178C / ARP4761</div><div class="desc" data-page-node-id="oDTZGfDZ30FGb0HR7nZcrB">降低电子电气失效风险：双备份飞控、故障检测与容错；按航空 DAL 等级开发，使系统在足够短时间内回到安全状态。</div></div>
+        <div class="pillar-item rv" data-page-node-id="t2TGcC0J9wUMKtqBAtjNKT"><div class="name" data-page-node-id="tWSVSiwBd2C53LN5AOdhgO"><i style="background:#a78bfa" data-page-node-id="5bRDUt60SOCYojGLU1cTF7"></i>预期功能安全 SOTIF</div><div class="std" data-page-node-id="OJyWX1gjDUrF4kBBWsH2Xk">ISO 21448</div><div class="desc" data-page-node-id="WLq9xJaAThxjKv2ej0SpPt">降低性能局限与误用风险：低空气象复杂、GNSS 失锁、驾驶员误操作等"没坏但想不到"的场景，需 ODD 约束与飞前天气评估。</div></div>
+        <div class="pillar-item rv" data-page-node-id="dMgPdd5yK16Dzk4p1NtTJU"><div class="name" data-page-node-id="2cSK3CMWLLCSXslCBCnbkL"><i style="background:#fbbf24" data-page-node-id="GU8RoN6dtkUEdwSjfEKv03"></i>行为安全 Behavior Safety</div><div class="std" data-page-node-id="xPPDgkNdIj7EHYn8QIW2DO">IEEE P2846 / 避障</div><div class="desc" data-page-node-id="BTDDLVUaC3oa7iAtaDKEAL">降低与外界交互风险：270° 态势感知、碰撞预警、自动辅助着陆、空域协同；应对"他机/鸟/障碍物"的博弈。</div></div>
+        <div class="pillar-item rv" data-page-node-id="JfKeMsiM6GYe7OEPwGzXSH"><div class="name" data-page-node-id="JJC9JZo0aQQVo3IddqzIiS"><i style="background:#f87171" data-page-node-id="1pifTiSkpBT9pVOv1KmlD6"></i>信息安全 Cybersecurity</div><div class="std" data-page-node-id="VFbmPzud6whpA4BLwc8UAy">ISO/SAE 21434 · TARA</div><div class="desc" data-page-node-id="2HcixUBsPSkruaTR8627Jv">降低外部攻击风险：飞控/通信链路防入侵、防电磁攻击；需做威胁分析与风险评估（TARA），防止劫持与数据篡改。</div></div>
+      </div>
+    </div>
+    <div class="note rv" data-page-node-id="hHTXaMwDriioiiTejNsLCn"><b data-page-node-id="WYcp4rXXBRlAphbVlTwMdA">教材对应：</b>这五支柱正是自动驾驶安全系统工程的安全需求分类（Passive / FuSa / SOTIF / Behavior / Security）；飞行汽车把"人-车-环境"扩展为<strong style="color:#fff" data-page-node-id="Q56MlM6GfYknrrFG1nIHE6">"人-机-空域-环境"</strong>，交互维度更多、失效后果更严重。<span class="src" data-page-node-id="BcxmKfvtDVCV5ycc5OiuOC">（ch5 p68–p77、p77 五层框架）</span></div>
+  </div>
+</section>
+
+<!-- ============ 7 专项设计 ============ -->
+<section id="design" class="alt" data-page-node-id="TLAUmlOdzYv4geL9TLh0BK">
+  <div class="wrap" data-page-node-id="0596lFjkIxIYHLnvbdASEo">
+    <div class="rv" data-page-node-id="D48pV1C0RP7BB7VECTQ1bM"><div class="sec-tag" data-page-node-id="UBpVgpexEHMkyQFgK2MUKZ">07 / SPECIALIZED DESIGN</div><h2 data-page-node-id="36f1enE7ssx33hazzi12Pd"><span class="num" data-page-node-id="BQ6SXOdND4apnMqm3129bX">07</span>专项安全设计：电池、分合机构与环境</h2>
+    <p class="sec-desc" data-page-node-id="dZlU921LIcoOBIsW5E2mle">对应教材安全工程的硬件、软件、电气/机械/化学安全设计环节。其中动力电池是 eVTOL 的"最难一关"——能量密度、功率与安全三者必须同时满足，且遵循航空"零容错"铁律。</p></div>
+
+    <div class="grid g2 rv" data-page-node-id="DQwUFkSpV9pp7dJdygDJur">
+      <div class="card" data-page-node-id="Xx5nk5o3ggCUsujrBrPn11"><div class="ic r" data-page-node-id="VEoqnL397plQYGhMVQAtua">🔋</div><h4 data-page-node-id="sj1bKsFwQt3TuLzVwZw6iV">动力电池安全（化学 / 热）</h4><ul data-page-node-id="NqA7UHiBKFtYKbW8h3jfao">
+        <li data-page-node-id="qecjygwRimjJtfTH06enqy">灾难级故障率 ≤ <b style="color:#fff" data-page-node-id="M6BthvN8KY0Tc3dwE5To3K">10⁻⁹ / 飞行小时</b>（载人）<span class="src" data-page-node-id="ul7NVH76qDEpovhXY5Kcem">（ch5 p15 / 电池路线图2025）</span></li>
+        <li data-page-node-id="lg67H48yk5n0xiHVySD0ai">单电芯热失控<b style="color:#fff" data-page-node-id="Dh969bdi7zlZHXl39Namye">不扩散</b>，包表面温度 ≤ 150℃，不起火不爆炸</li>
+        <li data-page-node-id="cZAzXy4b05bjmbKYAyIej0">BMS 双冗余，电压/温度/电流毫秒级监控，预留 ≥20% 备降电量</li>
+        <li data-page-node-id="cyVzbQegvbJkKqZoAJC3rm">参照 RTCA <b style="color:#fff" data-page-node-id="V3e31rWKpsRbHaavdFjy8t">DO-311A / DO-160G</b>：加热、针刺、短路、冲击、15 m 跌落等严苛测试</li>
+        <li data-page-node-id="JPv8KMIGwALIv1h0urwvPx">宽温域 -40~55℃；当前能量密度 280–320 Wh/kg，仍是核心瓶颈</li>
+      </ul></div>
+      <div class="card" data-page-node-id="UERzsukCyrq7iE2k8pdhab"><div class="ic o" data-page-node-id="yTt8Q416Aj2UKQ4YNp2ew3">⚙</div><h4 data-page-node-id="vSzza2JVa8MB5wcuuBQa3p">分合机构与结构安全（机械）</h4><ul data-page-node-id="Cs08a7mIll9T04IHPsiBQP">
+        <li data-page-node-id="YbpNtnrYpA5LbBGKJwDzPy">机械 + 电子<b style="color:#fff" data-page-node-id="fZkD1W0is0aCzbKfhEbLxN">双重锁止</b>，状态反馈闭环确认后再允许起飞</li>
+        <li data-page-node-id="rfreZsLGjnDDHwtD0CfaF9">旋翼数分钟自动展开/折叠，展开完整性检测（防呆设计）</li>
+        <li data-page-node-id="dRP8fE3GmnHeOaZ0kIkPJe">碳纤维可折叠旋翼与机身：轻量化 + 抗振 + 碰撞吸能</li>
+        <li data-page-node-id="CLRwyuRvuFAlCJIGgnwCob">涵道设计降低旋翼外露风险，保护周边人员</li>
+      </ul></div>
+      <div class="card" data-page-node-id="oGs6Gk2yEIP1pFXVfwO05b"><div class="ic" data-page-node-id="XskPt0q8QthaI771EbUPf8">💻</div><h4 data-page-node-id="mtu8jYx4j2bvnTJfV4910A">飞控软件安全（软件）</h4><ul data-page-node-id="FqXS95BydFTq1WD7dnQQZt">
+        <li data-page-node-id="g1KOBYKEELuPE1XVJ0wpAz">按航空 <b style="color:#fff" data-page-node-id="F7dAAWNGREcfrboxiqZDEe">DO-178C</b> 研制保证等级开发，需求—设计—代码—测试可追溯</li>
+        <li data-page-node-id="LWlJxRROnSwBK2KHQtqnbl">形式化验证与 diversity 设计，抑制共因软件错误</li>
+        <li data-page-node-id="lDOAjtuvP7kh5AugRe5PK8">失效-安全/失效-运行（fail-safe / fail-operational）状态机</li>
+        <li data-page-node-id="KSIjtFr9aGUznXceiLTd2C">升级管理（参照 UN-R156 思路），防止 OTA 引入新风险</li>
+      </ul></div>
+      <div class="card" data-page-node-id="ddOJhwcVTdBsTPgOyFggLi"><div class="ic v" data-page-node-id="kyVvRSOJq4XcE13y9wNxLX">🌡</div><h4 data-page-node-id="cLJiGe5f71s0YklOCnGvFq">环境适应性与极端工况</h4><ul data-page-node-id="mXT2hH7hDBTtQG06Bwfk4z">
+        <li data-page-node-id="3M4yLGnAQhsSRZDRR0eSPN">已通过 <b style="color:#fff" data-page-node-id="549cXxuGD0Q0WNy2Do8iCn">-35℃ 极限试炼</b>（汇天公开信息）</li>
+        <li data-page-node-id="aivSjlPsjJgZR2Sl6l6UB9">飞前智能天气评估，规避雷暴/强风/暴雨超出包线</li>
+        <li data-page-node-id="I2kj43vyKizgEcq0URMJkO">低空 1000 m 以下运行，280°/270° 态势感知 + 碰撞预警</li>
+        <li data-page-node-id="sovQLubkm8xoVZeiENFDiH">高压互锁、绝缘监测、短路与供电保护（电气安全）</li>
+      </ul></div>
+    </div>
+
+    <div class="note warn rv" data-page-node-id="A86RBw26x8aZoPBthKWrTV"><b data-page-node-id="1g8FcyNuHCqf5IbziXaHkA">核心矛盾：</b>电池要同时做到"高能量密度（飞得远）+ 高功率（能起降）+ 绝对安全（不起火）"，而航空零容错标准（10⁻⁹）比车规（10⁻⁵）严苛一万倍。何小鹏明确表示"飞行汽车的安全标准必须向航空工业看齐"。这正是本产品从车规级迈向航规级必须跨越的鸿沟。<span class="src" data-page-node-id="I8xhPn73x96dCvSottAfUP">（教材 ch5 p19/p21；chinaevtol.org 2026）</span></div>
+  </div>
+</section>
+
+<!-- ============ 8 适航标准 ============ -->
+<section id="cert" data-page-node-id="hSPmutC5j8nMOPsPidKypJ">
+  <div class="wrap" data-page-node-id="EXSMLvhiQzXXDgGqrjUguh">
+    <div class="rv" data-page-node-id="V8qDQg0yarWuAcV0VCeFv4"><div class="sec-tag" data-page-node-id="YDeQlX45j6ArgIUFX0zm27">08 / AIRWORTHINESS & STANDARDS</div><h2 data-page-node-id="9kWTrwkk0jVFATc8Xtx40x"><span class="num" data-page-node-id="Gcx4MlDhvnhuHW7WOdG39A">08</span>适航认证与法规标准</h2>
+    <p class="sec-desc" data-page-node-id="OuqFj23w6rSuPPFU24sLdz">设计安全（Design Safety）必须经适航审定"实证考场"证明，才能转化为运行安全。飞行汽车作为颠覆性产品，全球都处在"个案突破 → 体系构建"的过渡期。教材以 TC / PC / AC 三证为主线，此处结合陆地航母的取证进展分析。</p></div>
+
+    <div class="grid g3 rv" data-page-node-id="DjVceIPDkQ6T4cySgwrN3W">
+      <div class="card" data-page-node-id="dULlmu4XFTSVCCYTxWE8Vd"><div class="ic" data-page-node-id="KSceJyN3Y5xpp2HZhQ9Fda">📐</div><h4 data-page-node-id="zwpKgztjaD5bRgUxyRzsQg">TC · 型号合格证</h4><p data-page-node-id="BoU7mUIWnvaF52KxDleG2W"><b data-page-node-id="I3BjbLQdqYeiJz8PCOzJD9">设计阶段</b>：确认设计安全、可行，适用于航空运营，是投产与注册前提。陆地航母已获 CAAC 型号合格证（设计安全认证）。<span class="src" data-page-node-id="QerYXlHVy9LEBLe4aImYwz">（ch5 p28；来源口径需以局方公告为准）</span></p></div>
+      <div class="card" data-page-node-id="5mwfvJYjdCy8zEIu75bmZ8"><div class="ic" data-page-node-id="83CDxgz8UGXSeeyEGceZI4">🏭</div><h4 data-page-node-id="YW3H8MfBeyTw6ug3m9vDQI">PC · 生产许可证</h4><p data-page-node-id="PAwGw4Hiw0Kpx8NfPwiJWa"><b data-page-node-id="49HttLkdbI9uBNkNw2uHnX">生产阶段</b>：授权批量生产，要求全流程制造与质量控制能力。汇天广州工厂规划年产能 1 万台，正推进 PC 取证。<span class="src" data-page-node-id="B6qE0sqv7RU453tEZrdDRW">（ch5 p28）</span></p></div>
+      <div class="card" data-page-node-id="0CrEiPJBTiW4Wz9iLdBWQ4"><div class="ic" data-page-node-id="efsoYjd94gdRKMCaAox9bH">🚀</div><h4 data-page-node-id="D6uToTCW5BFwPH1agnYfHp">AC · 适航证 / OC 运营</h4><p data-page-node-id="JGiIKd4qqGlURL0vi0241x"><b data-page-node-id="nm4WqHhyYvmZavjdTmRHEI">运行阶段</b>：审核持续安全运行能力（飞行人员、维护、运行程序）。分体式按地面/飞行双模式分别管理。<span class="src" data-page-node-id="oQWdhDoY1IycZI3QYwQbjz">（ch5 p28）</span></p></div>
+    </div>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="M6xE4DgoVWC3M0sxAuwYY4">安全标准的"数量级跃升"</h3>
+    <div class="grid g3 rv" style="margin-top:14px" data-page-node-id="K81xNegoXqqoEaRJCfdv7E">
+      <div class="card" style="text-align:center" data-page-node-id="utx5pGG6QjvLDx1gXfNuuC"><div class="n" style="font-size:30px;font-weight:850;color:var(--orange)" data-page-node-id="56qESegvW6Ike8rIxYuu4W">10⁻⁵</div><h4 style="margin-top:6px" data-page-node-id="ObBERV4AR6wHn6x5f7DfSy">车规级失效率</h4><p data-page-node-id="cR6ogrMbXnXEHnAfHIZF0i">面向地面交通，事故可统计、可接受</p></div>
+      <div class="card" style="text-align:center;border-color:rgba(56,189,248,.4)" data-page-node-id="Dj62GPF61tY47jce9CFVpR"><div class="n" style="font-size:18px;font-weight:850;color:var(--cyan);padding:8px 0" data-page-node-id="uRYW52KAAJkpNa77NVnrI3">×10 000</div><h4 data-page-node-id="ap0cNV7DDRo24WWudPFr4i">严苛程度差距</h4><p data-page-node-id="EfaCsDWmJDDLA4D8eO2wFy">相差四个数量级</p></div>
+      <div class="card" style="text-align:center" data-page-node-id="QYQWO4j5T7pbo9Qew456MK"><div class="n" style="font-size:30px;font-weight:850;color:var(--green)" data-page-node-id="jHQwP81h5vGWvKc5Ylg1fb">10⁻⁹</div><h4 style="margin-top:6px" data-page-node-id="ffZclr51npi9KbDKa4xTth">航空级失效率</h4><p data-page-node-id="iagSTcUiaE0xwiFmCfN3pQ">单机事故即重大公共风险，事前强约束</p></div>
+    </div>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="yuB1NKVJKABbls63Acz2Xl">相关标准法规体系（教材梳理）</h3>
+    <div class="tbl-wrap rv" data-page-node-id="0JVJCgx3x8fCQTzBrVrVI0">
+      <table data-page-node-id="j1G7028jVIRvLhzvgRqHLI">
+        <thead data-page-node-id="2RxzyXDMfIHbd7m70HTytN"><tr data-page-node-id="QSMaN5Lc7Au9lFgPVAOrxv"><th data-page-node-id="VAXcajGnbiRPWnIB4DxWeB">领域</th><th data-page-node-id="Rd2qhAziW5b1Dpw6MU0lQq">标准 / 规章</th><th data-page-node-id="u5dK1Uz6ojRCPY7DncE5SL">作用</th></tr></thead>
+        <tbody data-page-node-id="xJfE2SYocdG8rVifXGpblg">
+          <tr data-page-node-id="ApYjOCjZjLncdEp5lSbuKG"><td data-page-node-id="x31MZnEVspt6RWa2EhYvfP"><b data-page-node-id="f7NZcZBCLgIqXXemMDjV1p">航空适航</b></td><td data-page-node-id="0krkkWX0T9gChQ86D2PCN6">SAE ARP4754A（系统开发）、ARP4761（安全评估）、DO-178C（软件）、DO-254（硬件）、DO-311A（电池）</td><td data-page-node-id="7bhiyfVZIaSkcT1fKmgost">研制保证等级 DAL、FHA/FTA/PSSA/SSA 全过程审定</td></tr>
+          <tr data-page-node-id="dAvXRBdTIiEFcp5SDSHpIy"><td data-page-node-id="8CBWWv199w0tfCIERZ6quZ"><b data-page-node-id="yY78W8eOqGltkkG8f4E1uJ">中国实践</b></td><td data-page-node-id="0nxO2GrEPmfCUdZ2PPcHre">CAAC《亿航 EH216-S 专用条件》；《无人驾驶航空器飞行管理暂行条例》</td><td data-page-node-id="6KzCO7jTsQtwHmsTI1Txvv">"一事一议"专用条件，提供中国样本</td></tr>
+          <tr data-page-node-id="RDc2o2htK1qPsE2K1LHGlb"><td data-page-node-id="DrM7pIk6R5ADzdCCi4LDDz"><b data-page-node-id="7saHfAfkeaIuLikpmxkKZb">欧美</b></td><td data-page-node-id="UN5ZheDh1UimtCs5kg0eM2">EASA SC-VTOL-01；FAA AAM 实施计划与国家战略（2026–2036）</td><td data-page-node-id="yMNZezLAJbhQJQeKR0MP2r">全球首个相对完整的 eVTOL 普适适航框架</td></tr>
+          <tr data-page-node-id="OwtDkID22P5lAsIFtoIe9r"><td data-page-node-id="nzVtugYuYNQuRRJn6CnaAW"><b data-page-node-id="mzvDbI5afASz4ymQFCEID7">汽车安全（借鉴）</b></td><td data-page-node-id="QjszSGmMKSNA3grYhkQUwf">ISO 26262 功能安全、ISO 21448 SOTIF、ISO/SAE 21434 信息安全</td><td data-page-node-id="qWhauSRkhFN5p5qGJP6LMJ">向航空级迁移的方法论基础</td></tr>
+          <tr data-page-node-id="YZjJ9alim36g7eRGcsF2pn"><td data-page-node-id="UKUPK3ViGbMEaBioKyOIxW"><b data-page-node-id="7C2dbxoG84EtYfiCXXThGs">系统安全</b></td><td data-page-node-id="t5atYLbz4oyKKZHOv2hQnR">MIL-STD-882E、NASA SS Handbook、ISO/IEC/IEEE 15288</td><td data-page-node-id="MV0196I5VSnXjxkztV5oNa">系统安全与全生命周期过程</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src rv" style="margin-top:10px" data-page-node-id="2Zu0mthRIf4Im0qo9ORIKT">来源：教材第五章 p28–p31、p65、p81。<span class="src" data-page-node-id="iGen4cgpR9C1zUpqyc2aE5">标准状态请以官方最新发布为准。</span></p>
+  </div>
+</section>
+
+<!-- ============ 9 验证与论证 ============ -->
+<section id="verify" class="alt" data-page-node-id="c5XHzmIn6FVkgzCOSOOoCF">
+  <div class="wrap" data-page-node-id="5kYkCKHQ6VAzGAqH5ay17V">
+    <div class="rv" data-page-node-id="qxrWqO5qmqijENOto8YEEX"><div class="sec-tag" data-page-node-id="6TD4uifdozK41lBEpy2Yso">09 / V&V & SAFETY ARGUMENT</div><h2 data-page-node-id="l7oNMDTXtw2o7w9kiN6mQq"><span class="num" data-page-node-id="DYPFkKGNTKSchBycCiTbwE">09</span>安全测试验证与运行安全论证</h2>
+    <p class="sec-desc" data-page-node-id="MRGwQA0EmlnhB23DCFkA3s">安全不能只停留在纸面设计。教材以 V 模型描述"左侧开发分解、右侧集成验证"，并以安全论证（GSN / SACM）回答"我们凭什么说它安全"。陆地航母已进入小批量试产与多机试飞阶段，正用海量试飞数据完成安全证明。</p></div>
+
+    <div class="grid g2 rv" data-page-node-id="X8O9HKTsHFMGEEE08w0Xn3">
+      <div class="card" data-page-node-id="6CXuWezE2t70yGNAB0CchE"><div class="ic" data-page-node-id="qSmSJob5Gi2ny8rmAzQSBi">🔬</div><h4 data-page-node-id="yTp9cev7FUCBYOLPj54dEw">V 模型左侧：正向安全开发</h4><p data-page-node-id="TQG5HIcgoRKF5qkF8hV4HK">基于模型的功能定义 → ODC 场景分析 → 整机 HARA（HARA/FHA/STPA）→ 系统安全需求 → 组件安全分析（FMEDA/CAE）→ 安全设计实现。每一步输出可追溯的安全需求。</p></div>
+      <div class="card" data-page-node-id="TMEGDLGmKPcmot5THKbji7"><div class="ic g" data-page-node-id="2DAxBoRVsh7AkZ5A5KUsg4">✅</div><h4 data-page-node-id="FTe5joNziBv1gDBjbSGz64">V 模型右侧：测试验证与确认</h4><p data-page-node-id="Q7SerDqF6bWLIak2rnCbNl">逻辑/具体/测试场景生成 → 组件测试 → 系统集成测试 → 整机集成测试 → 整机安全确认 → 运行安全论证。回答"是否做对了产品"与"是否做了正确的产品"。</p></div>
+    </div>
+
+    <h3 class="rv" style="margin-top:34px" data-page-node-id="GxdqaqBvYHh2aCUTxp7EjZ">取证与验证进展时间线</h3>
+    <div class="tl rv" data-page-node-id="Q3qYCvW8lEueTtsb9l0NPs">
+      <div class="tl-item done" data-page-node-id="1DCwTEw2AzjdMtEnz7XNHX"><div class="yr" data-page-node-id="m406Xvn8aDE2TiTw7mZhgV">2025</div><h4 data-page-node-id="QnjOgI9oWWtwGbIvgHyMvs">量产基地贯通 · 首台飞行器下线</h4><p data-page-node-id="zOjPNKyB54DF6BvF2aEXO7">全球首条飞行汽车量产线在广州开发区贯通，从"手工试制"迈向"规模生产"。</p></div>
+      <div class="tl-item done" data-page-node-id="EyUmu6ZgrwgvCooueJ7Wvd"><div class="yr" data-page-node-id="O4QQZyXUHljTnjfBFWr9ro">2026.03</div><h4 data-page-node-id="UbOlhwzD8dkBkDAmEYM9go">5 台批量试产下线 + 多机同步试飞</h4><p data-page-node-id="cKRFBReTBAwAWhjAOgIr61">从研发验证进入商业化量产准备阶段，用试飞数据验证设计安全。</p></div>
+      <div class="tl-item" data-page-node-id="hBeHCjynZuOiWmdNhF2tZE"><div class="yr" data-page-node-id="udjUwjPnwl9tP7vDXOypnB">2026 Q4</div><h4 data-page-node-id="JWU6vgpwb7EtV2BuBQKZ7o">计划量产交付</h4><p data-page-node-id="jME5SlUQ8PyD5gj4wdIj7I">订单已超 7000 台，售价不超 200 万元；交付前仍需完成适航、质控、用户培训、运营保障等门槛。</p></div>
+      <div class="tl-item" data-page-node-id="totGvBRAVau2GzetjyZkfF"><div class="yr" data-page-node-id="v58ZtPym0maiOYo8EWOFST">未来</div><h4 data-page-node-id="w76NzdjACNiJOwGXTBzIb7">规模化运营 · 运行安全论证</h4><p data-page-node-id="FWte569DSQPSxZPf4vmpAH">随 TC/PC/AC 体系完善，建立"制造-运营-服务"一体化安全闭环，完成 GSN 运行安全论证。</p></div>
+    </div>
+
+    <div class="note rv" data-page-node-id="0mJnPMTeUWUCg64HgSDJAd"><b data-page-node-id="TQtAkdFS3BXdyoFrepLJAl">安全论证（GSN）：</b>顶层目标是"陆地航母在城市低空运行是可接受的"，逐层拆解为：设计符合 10⁻⁹ 目标 ← FTA/CCA/FMEA 分析充分 ← 测试覆盖 ODC 场景 ← 人员/流程/空域保障到位。任一环节的证据不足，都会让论证链断裂。<span class="src" data-page-node-id="7JXzDbZZkVwFHQHFMDkD6f">（ch5 p77/p87 GSN、SACM）</span></div>
+
+    <div class="concl-grid rv" style="margin-top:26px" data-page-node-id="kBpiD0R8N5tahWaivD4g7w">
+      <div class="cc pos" data-page-node-id="UKitAecebHQUXuKkXZEFoY"><h4 data-page-node-id="ClDBVH8XLHfwT7PYhSTqXY">✓ 已具备的安全基础</h4><ul data-page-node-id="wFXOiyazj8GQ9Z4KHkMY59">
+        <li data-page-node-id="5ZrIGChd6Hf8Yw4fiwpAqi">双备份飞控 + 六旋翼双失效容错 + 三冗余动力</li>
+        <li data-page-node-id="u0rnhAxOyI9XsCHyKqWGkL">整机弹道降落伞（50 m 低空可用）兜底</li>
+        <li data-page-node-id="nUJQHPkYl1cw882aczBU5k">270° 态势感知、碰撞预警、自动辅助着陆</li>
+        <li data-page-node-id="D67Yl7kCsFfd5rAzXw4dKS">高管先飞 5000 km 的安全文化与实践</li>
+      </ul></div>
+      <div class="cc neg" data-page-node-id="VxdwVFHPbe2wPD5XhtTLjA"><h4 data-page-node-id="28OaKjBANfcEKIxqX14pr9">⚠ 仍需突破的安全挑战</h4><ul data-page-node-id="WS9wDLwNmYngjH9GUBCTyJ">
+        <li data-page-node-id="CCQpeeZhNymlNG3fKW0qBR">电池能量密度与安全性的"不可能三角"</li>
+        <li data-page-node-id="754M9EZ5OIoFMGnFzpCndu">复杂城市低空与高密度飞行运行风险</li>
+        <li data-page-node-id="ZvCLdR8E1YBZS84UE8Uwo0">适航标准体系与空域监管仍在建设</li>
+        <li data-page-node-id="qoQJBUoZffrDEu8ihHNzwD">SOTIF / 网络安全的持续验证与运行数据积累</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 结论 ============ -->
+<section id="conclusion" data-page-node-id="KQ38gl7lwlx8US5qzV2Ayy">
+  <div class="wrap" data-page-node-id="UyDXf0IDWS7KBJbZp0X44g">
+    <div class="rv" data-page-node-id="F9wT8566eqDNCO4wDCqV5r"><div class="sec-tag" data-page-node-id="nZGKMAnFqLxSpKGei1HgV2">10 / CONCLUSION</div><h2 data-page-node-id="ntWLf1JIGs3Lw5PDYptz8D"><span class="num" data-page-node-id="CUIgAzsrWlXAMToibnHrDj">10</span>分析结论与展望</h2>
+    <p class="sec-desc" data-page-node-id="q8fCvlKDDdGfpNPjSxhCcm">综合以上系统安全工程分析，陆地航母通过分体式架构解耦场景、以多重冗余与整机降落伞构建纵深防御，在设计层面体现出对标航空级安全的明确意图；但要从"设计安全"走向"规模化运行安全"，仍需在电池、ODD、适航体系与运行数据上持续投入。</p></div>
+
+    <div class="grid g3 rv" data-page-node-id="TXtICYUqEVUWBovhmLBy2f">
+      <div class="card" data-page-node-id="1BQwa7TFY06DD0bhfJ850j"><div class="ic g" data-page-node-id="zmlmTJCPmlSaaIc0lsqyHH">1</div><h4 data-page-node-id="ZHGbsyrBl23YCgEDWiBsPz">架构层面</h4><p data-page-node-id="ysu8VytOtwKDcmof8hotlT">分体式是聪明的工程折中，把"飞"与"行"各自优化；冗余架构与低空伞系统构成多级容错，符合航空纵深防御原则。</p></div>
+      <div class="card" data-page-node-id="xQ4QPPohy4HuTdXX3paBQ2"><div class="ic" data-page-node-id="oxNHL8ESkjUoYaF5ZbQ4Na">2</div><h4 data-page-node-id="ZyW3YFVojJDjer2yR1u8Hi">方法层面</h4><p data-page-node-id="iyuGHHg42jHl6hA8mKKjXm">需用 HARA/STPA/FTA/CCA/FMEA 全流程工具，而非单点测试，去证明 10⁻⁹ 的系统级安全目标；共因失效是关键。</p></div>
+      <div class="card" data-page-node-id="BTG0yDMAgc0Vc9LIsNFV51"><div class="ic v" data-page-node-id="mqTLps8jb3c3O2pZtb4PvR">3</div><h4 data-page-node-id="T9h6EMoL8QM3oEY9BFdtQw">运行层面</h4><p data-page-node-id="1UC9UetZlcqf1aDIQy3XRc">安全是"设计+验证+运行论证"的闭环；空域管理、人员培训、应急体系与标准完善，与飞行器本身同等重要。</p></div>
+    </div>
+
+    <div class="note rv" data-page-node-id="5nVTMWRrcjYktSG1zhr5K9"><b data-page-node-id="HKmqCpfaRyniO4rTHDrF7f">总评：</b>陆地航母代表了中国飞行汽车从"能飞"走向"能安全载人或载物常态化运营"的积极探索。以教材的安全系统工程视角看，它已具备较完整的<b style="color:#fff" data-page-node-id="SN5To9TMmuc1w27HRdt8QE">冗余设计骨架与安全文化</b>，正处于用适航审定与试飞数据把"纸面安全"转化为"可论证安全"的关键阶段。其最终安全水平，取决于能否在航空级标准下完成全生命周期的验证与运行闭环。</div>
+
+    <h3 class="rv" style="margin-top:32px" data-page-node-id="nGWg9gyB1dvmx049V5TBFO">参考来源</h3>
+    <div class="refs rv" data-page-node-id="CH8PAsRcE4I1HQl8GPt2ST">
+      <div data-n="[1]" data-page-node-id="yOjl0ZA9yjGZjRDkr9LGSw">课程讲义《第四章 飞行汽车的现状及展望》，张玉新，吉林大学，2026（p37–p41 安全研究点与分析方法）。</div>
+      <div data-n="[2]" data-page-node-id="DDBFj7B1NHnPfz0rkvkL3L">课程讲义《第五章 飞行汽车产业分析及支撑技术》，张玉新，吉林大学，2026（p15、p28–p31、p64–p88 安全系统工程）。</div>
+      <div data-n="[3]" data-page-node-id="wnweHhE0Q83ffuCBKRQmwa">中国 eVTOL 网：《陆地航母 2026 年 Q4 量产交付》，2026（冗余、降落伞、订单数据）。</div>
+      <div data-n="[4]" data-page-node-id="4TQ5SmhnMeYvq6AALOzoix">百度百科：东莞市汇天科技有限公司（多重安全冗余、三冗余动力、专利）。</div>
+      <div data-n="[5]" data-page-node-id="pCVW1xJQBkrouqYjoTLmLN">发现报告 / 金元证券：《eVTOL 电池篇》（电池 10⁻⁹、150℃、DO-311A 要求）。</div>
+      <div data-n="[6]" data-page-node-id="zT1imb9wpMLiwkDZw4rx9t">工信部电子五所：《低空航空器动力电池技术路线图（2025 版）》（灾难级故障率、能量密度指标）。</div>
+      <div data-n="[7]" data-page-node-id="eGvcdXx16d5msbUxkx0sus">沃飞长空 AE200 安全实践（DALB、多包余度、适航审查），廊坊新闻网 2025。</div>
+      <div data-n="[8]" data-page-node-id="qt4Oj04WHzmHqAKAMfDLCz">小鹏汇天官网 aeroht.com（高管先飞 5000 公里、-35℃ 试炼、量产进展）。</div>
+      <div data-n="[9]" data-page-node-id="5tX0YSK6YJwq00Lms5Cbtd">SAE ARP4761 / ARP4754A、DO-178C、ISO 26262 / 21448 / 21434 标准体系。</div>
+      <div data-n="[10]" data-page-node-id="G0L6P7CoIn5AAkMeAXRGZ2">Flight Car Transportation System: Advances, Techniques, and Challenges, IEEE（安全/伦理/商业因素）。</div>
+    </div>
+    <p class="src rv" style="margin-top:14px" data-page-node-id="WsEZ6JBNzpArCml0NAx3mm">说明：本网页为课程作业分析作品。部分产品参数在不同公开来源间口径不一，已作标注；风险评估与评分为基于教材方法的课堂演示，不代表厂商或局方正式结论。</p>
+  </div>
+</section>
+
+<footer data-page-node-id="5tXmpDsKsS5ivgSCd2vSGA"><div class="wrap" data-page-node-id="EeBAn12i1YQCEr9BnY89YH">
+  <p data-page-node-id="gd9XE7w9hmc71KUmApm8qb"><b data-page-node-id="lYuCMdNmhBMLldHbPZXYsd">课程作业-2 · 针对飞行汽车的某技术/产品的全方位安全分析</b></p>
+  <p data-page-node-id="xWW7Ig6wimpGCPuvoexZtA">分析对象：小鹏汇天「陆地航母」分体式飞行汽车　|　方法论：智能运载工具安全系统工程（9 步过程 + 五大支柱）</p>
+  <p style="margin-top:8px" data-page-node-id="APHi84c8EsqlrFyprg1ESj">飞行汽车技术基础 · 2026　·　本页为单文件网页，可直接下载用于 GitHub Pages 提交</p>
+</div></footer>
+
+<script>
+// progress bar
+const bar=document.getElementById('progress');
+const links=[...document.querySelectorAll('.navlinks a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function onScroll(){
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  bar.style.width=p+'%';
+  let active=null;
+  secs.forEach(s=>{if(s && s.getBoundingClientRect().top<=120) active=s.id;});
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active));
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// reveal
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%5*40)+'ms';io.observe(el);});
+
+// mobile menu
+const mb=document.getElementById('menuBtn'),nl=document.getElementById('navlinks');
+mb.addEventListener('click',()=>nl.classList.toggle('open'));
+nl.addEventListener('click',e=>{if(e.target.tagName==='A')nl.classList.remove('open');});
+
+// matrix dot tooltip
+document.querySelectorAll('.mx-dot').forEach(d=>{d.title='危险源 '+d.title;});
+</script>
+</body>
+</html>
